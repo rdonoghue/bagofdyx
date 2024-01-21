@@ -1,0 +1,113 @@
+.charsheet {
+  display: grid;
+  grid-template-columns: 20rem auto 20rem;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.statholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.statblock {
+  display: grid;
+  grid-template-columns: 9rem 4rem 4rem;
+  /* grid-template-rows: repeat(12, 1rem); */
+  grid-template-rows: auto;
+  row-gap: 2px;
+  column-gap: 1ch;
+  width: 19rem;
+}
+.statblock div {
+  height: 1.75rem;
+}
+
+.statblock div:nth-child(1),
+.statblock div:nth-child(2),
+.statblock div:nth-child(3) {
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 0.8rem;
+  height: 1rem;
+}
+
+.statblock div:nth-child(3n + 4) {
+  font-weight: bold;
+  /* background-color: red; */
+}
+
+.statblock div:nth-child(3n + 5),
+.statblock div:nth-child(6),
+.statblock div:nth-child(9),
+.statblock div:nth-child(12),
+.statblock div:nth-child(15),
+.statblock div:nth-child(18) {
+  text-align: center;
+  border: 1px solid black;
+}
+
+.statblock div:nth-child(3n + 6) {
+  text-align: center;
+}
+
+.gear {
+  width: 20rem;
+  min-height: 20rem;
+}
+
+.noborder {
+  border-width: 0px;
+}
+
+.proftitle {
+  padding-top: 1ch;
+  font-size: 1.25rem;
+  border-bottom: 1.5px solid black;
+  font-weight: bold;
+}
+.profcat {
+  padding-left: 1rem;
+  font-weight: bold;
+}
+.prof {
+  padding-left: 2rem;
+}
+
+.spacer {
+  display: flex;
+  height: 100%;
+}
+
+.money {
+  display: grid;
+  gap: 0.25rem;
+  grid-template-columns: repeat(4, auto);
+  margin: 3rem 1rem 0 1rem;
+}
+
+.money div {
+  text-align: center;
+}
+
+.charname {
+  font-family: "Amaranth", sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+  padding-bottom: 1ch;
+  text-align: center;
+}
+
+.ancestry {
+  font-family: "Amaranth", sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  padding-bottom: 1ch;
+  text-align: center;
+}
+
+.lcol,
+.midcol,
+.rcol {
+  visibility: hidden;
+}
