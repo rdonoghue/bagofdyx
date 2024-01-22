@@ -300,6 +300,8 @@ var weaponList = [
   "Greataxe",
   "Greatsword ",
   "Maul",
+  "Small Shield",
+  "Large Shield",
 ];
 var heraldry1 = [
   "golden",
@@ -339,7 +341,8 @@ var interestingThings = [
   "A tiny inert mechanical spider.",
   "A shrunken head.",
   "A glass eye or a bezoar.",
-  "A book written in an unknown language or a book containing things you never wanted to know.",
+  "A book written in an unknown language.",
+  "A book containing things you never wanted to know.",
   "A deck of fortune-teller's cards.",
   "A pair of loaded dice.",
   "Six small cakes that can nourish the person who eats one until the next day at dawn.",
@@ -489,8 +492,8 @@ var interestingThings = [
 function destituteGear() {
   var coinflip = Math.floor(Math.random() * 2);
   var gearList = [
-    "A sling and 20 stones, rags and a pouch",
-    "A club, rags and pouch",
+    "You are destitute.  You have a sling and 20 stones, rags and a pouch",
+    "You are destitute.  You have a club, rags and pouch",
   ];
   return gearList[coinflip];
 }
@@ -499,7 +502,7 @@ function poorGear() {
   var randomizer = Math.floor(Math.random() * 3);
   var weaponlist = ["staff", "club", "sling with 20 stones"];
   return (
-    "A " +
+    "You are poor. You have a " +
     weaponlist[randomizer] +
     ", patched basic clothing, a sack, bread, a waterskin, a tinderbox, a candle, and a pouch."
   );
@@ -509,7 +512,7 @@ function getByGear() {
   var randomizer = Math.floor(Math.random() * 3);
   var weaponlist = ["staff", "club", "sling with 20 stones"];
   return (
-    "A " +
+    "You are getting by.  You have a " +
     weaponlist[randomizer] +
     ", basic clothing,a backpack, a week of rations, a waterskin, a tinderbox, 2 torches, and a pouch."
   );
@@ -529,7 +532,7 @@ function comfortableGear() {
       listOfZeroSpells[Math.floor(Math.random() * listOfZeroSpells.length)],
   ];
   return (
-    "A " +
+    "You are comfortable.  You have a " +
     weaponlist[randomizer] +
     ", fine clothing, a backpack, a cloak, a week of rations, a waterskin, a coil of rope, a tinderbox, 2 torches, a healing potion, and a pouch. You also have a " +
     secondlist[randomizer2] +
@@ -548,12 +551,161 @@ function wealthyGear() {
       listOfZeroSpells[Math.floor(Math.random() * listOfZeroSpells.length)],
   ];
   return (
-    "You have a dagger, courtier's clothing, a cloak, a backpack, a week of rations, a waterskin, a coil of rope, a tinderbox, a lantern, 2 flasks of oil, a healing potion, and a pouch. You also have a small shield and " +
+    "You are wealthy.  You have a dagger, courtier's clothing, a cloak, a backpack, a week of rations, a waterskin, a coil of rope, a tinderbox, a lantern, 2 flasks of oil, a healing potion, and a pouch. You also have a small shield and " +
     secondlist[randomizer2] +
     "."
   );
 }
 
 function richGear() {
-  return "You have a dagger, noble's clothing, a cloak, a week of rations, a waterskin, a healing potion, and a pouch. You also have a personal servant, a guard, and three horses with saddles.";
+  return "You are rich as hell.  You have a dagger, noble's clothing, a cloak, a week of rations, a waterskin, a healing potion, and a pouch. You also have a personal servant, a guard, and three horses with saddles.";
+}
+
+function setProfessions() {
+  var profString = "<div class='proftitle'>Professions</div>";
+  var myd6 = 0;
+
+  for (i = 0; i < charStats.professions; i++) {
+    myd6 = rollxdx(1, 6);
+    console.log(myd6);
+    if (myd6 === 1) {
+      charStats.prac += 1;
+    } else if (myd6 === 2) {
+      charStats.prcr += 1;
+    } else if (myd6 === 3) {
+      charStats.prco += 1;
+    } else if (myd6 === 4) {
+      charStats.prma += 1;
+    } else if (myd6 === 5) {
+      charStats.prre += 1;
+    } else if (myd6 === 6) {
+      charStats.prwi += 1;
+    }
+  }
+  if (charStats.prac > 0) {
+    profString += "<div><b>Academic:</b> ";
+    for (i = 0; i < charStats.prac; i++) {
+      profString += professionAddAcademic();
+      if (i < charStats.prac - 1) {
+        profString += ", ";
+      }
+    }
+    profString += "</div>";
+  }
+
+  if (charStats.prco > 0) {
+    profString += "<div><b>Common:</b> ";
+    for (i = 0; i < charStats.prco; i++) {
+      profString += professionAddCommon();
+      if (i < charStats.prco - 1) {
+        profString += ", ";
+      }
+    }
+    profString += "</div>";
+  }
+
+  if (charStats.prcr > 0) {
+    profString += "<div><b>Criminal:</b> ";
+    for (i = 0; i < charStats.prcr; i++) {
+      profString += professionAddCriminal();
+      if (i < charStats.prcr - 1) {
+        profString += ", ";
+      }
+    }
+    profString += "</div>";
+  }
+
+  if (charStats.prma > 0) {
+    profString += "<div><b>Martial:</b> ";
+    for (i = 0; i < charStats.prma; i++) {
+      profString += professionAddMartial();
+      if (i < charStats.prma - 1) {
+        profString += ", ";
+      }
+    }
+    profString += "</div>";
+  }
+
+  if (charStats.prre > 0) {
+    profString += "<div><b>Religious:</b> ";
+    for (i = 0; i < charStats.prre; i++) {
+      profString += professionAddReligious();
+      if (i < charStats.prre - 1) {
+        profString += ", ";
+      }
+    }
+    profString += "</div>";
+  }
+
+  if (charStats.prwi > 0) {
+    profString += "<div><b>Wilderness: </b> ";
+    for (i = 0; i < charStats.prwi; i++) {
+      profString += professionAddWilderness();
+      if (i < charStats.prwi - 1) {
+        profString += ", ";
+      }
+    }
+    profString += "</div>";
+  }
+
+  return profString;
+}
+
+function professionAddAcademic() {
+  var profValue =
+    academicProfessions[Math.floor(Math.random() * academicProfessions.length)];
+  charStats.read += 1;
+
+  return profValue;
+}
+
+function professionAddCommon() {
+  var profValue =
+    commonProfessions[Math.floor(Math.random() * commonProfessions.length)];
+  if (profValue.match("Poet")) {
+    charStats.read += 1;
+  } else if (profValue.match("Writer")) {
+    charStats.read += 1;
+  }
+
+  return profValue;
+}
+
+function professionAddCriminal() {
+  var profValue =
+    criminalProfessions[Math.floor(Math.random() * criminalProfessions.length)];
+
+  return profValue;
+}
+
+function professionAddMartial() {
+  var profValue =
+    martialProfessions[Math.floor(Math.random() * martialProfessions.length)];
+
+  return profValue;
+}
+
+function professionAddWilderness() {
+  var profValue =
+    wildernessProfessions[
+      Math.floor(Math.random() * wildernessProfessions.length)
+    ];
+
+  return profValue;
+}
+
+function professionAddReligious() {
+  var profValue =
+    religiousProfessions[
+      Math.floor(Math.random() * religiousProfessions.length)
+    ];
+  if (
+    profValue === "Devotee" ||
+    profValue === "Evangelist" ||
+    profValue === "Evangelist" ||
+    profValue === "Acolyte of the New God"
+  ) {
+    charStats.read += 1;
+  }
+  return profValue;
 }

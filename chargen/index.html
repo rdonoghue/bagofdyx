@@ -44,6 +44,18 @@
       type="module"
       defer
     ></script>
+    <script
+      type="text/javascript"
+      src="../scripts/human.js"
+      type="module"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="../scripts/clockwork.js"
+      type="module"
+      defer
+    ></script>
   </head>
   <body>
     <header>
@@ -53,16 +65,26 @@
     <nav>
       <ul>
         <li><a href="../index.html">Home</a></li>
-        <li><a href="sessions/index.html"> Sessions</a></li>
-        <li><a href="gmnotes/index.html"> GM Notes</a></li>
-        <li><a href="chargen/index.html">Character Creator</a></li>
-        <li><a href="resources/index.html"> Resources</a></li>
+        <li><a href="../sessions/index.html"> Sessions</a></li>
+        <li><a href="../gmnotes/index.html"> GM Notes</a></li>
+        <li><a href="../chargen/index.html">Character Creator</a></li>
+        <li><a href="../resources/index.html">Resources</a></li>
+        <li><a href="../characters/index.html"> Characters</a></li>
       </ul>
     </nav>
     <main>
       <aside>
         <ul>
-          <button id="generate-button">Generate a Goblin</button>
+          <button class="generator" id="generate-button">
+            Generate a Goblin
+          </button>
+          <button class="generator" id="new-button">Generate a Human</button>
+          <button class="generator" id="clockwork-button">
+            Generate a Clockwork
+          </button>
+          <button class="generator" id="random-button">
+            Generate at Random
+          </button>
         </ul>
       </aside>
       <article>
@@ -98,6 +120,9 @@
               <div>Base Defense</div>
               <div id="bdef"></div>
               <div></div>
+              <div>Size</div>
+              <div id="size"></div>
+              <div></div>
               <div>Speed</div>
               <div id="speed"></div>
               <div></div>
@@ -114,6 +139,8 @@
           </div>
           <div class="midcol" id="midcol">
             <div class="chardetails"></div>
+            <div class="charprofessions"></div>
+            <div class="charabilities"></div>
           </div>
 
           <div class="rcol">

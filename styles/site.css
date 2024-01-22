@@ -33,7 +33,7 @@
 /* BASE APPEARANCE  */
 
 body {
-  font-family: "Raleway", "Quattrocento Sans", sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: lighter;
   color: var(--reading-text);
   font-size: 1.15rem;

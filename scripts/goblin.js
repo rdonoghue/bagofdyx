@@ -1,5 +1,3 @@
-var goblinStats;
-
 var goblinLanguageStack = [
   "Common",
   "Elvish",
@@ -8,28 +6,54 @@ var goblinLanguageStack = [
   "High Archaic",
 ];
 
-var goblinSkills =
+var goblinAbilityString =
   "<b>Immune:</b> Diseased, Charm, Disease<br><b>Iron Vulnerability:</b> You are Impaired by contact with Iron.<br><b>Shadowsight:</b> You can see into areas obscured by shadow as if those areas are lit.<br><b>Sneaky:</b> Roll to hide or move silently with a boon.";
 
 var goblinAge = [
-  { val: 1 },
-  { val: 2 },
-  { val: 3, verbiage: "You are a child", short: "child" },
-  { val: 4, verbiage: "You are an adolescent", short: "kid" },
-  { val: 5, verbiage: "You are an adolescent", short: "kid" },
-  { val: 6, verbiage: "You are an adolescent", short: "kid" },
-  { val: 7, verbiage: "You are an adolescent", short: "kid" },
-  { val: 8, verbiage: "You are a young adult", short: "ya" },
-  { val: 9, verbiage: "You are a young adult", short: "ya" },
-  { val: 10, verbiage: "You are a young adult", short: "ya" },
-  { val: 11, verbiage: "You are a young adult", short: "ya" },
-  { val: 12, verbiage: "You are a young adult", short: "ya" },
-  { val: 13, verbiage: "You are an adult", short: "ad" },
-  { val: 14, verbiage: "You are an adult", short: "ad" },
-  { val: 15, verbiage: "You are an adult", short: "ad" },
-  { val: 16, verbiage: "You are an older adult", short: "oa" },
-  { val: 17, verbiage: "You are an older adult", short: "oa" },
-  { val: 18, verbiage: "You are a venerable adult", short: "va" },
+  "",
+  "",
+  "You are " + Math.ceil(Math.random() * 5) + " years old, a child.",
+  "You are " +
+    (6 + Math.ceil(Math.random() * 4)) +
+    " years old, an adolescent.",
+  "You are " +
+    (6 + Math.ceil(Math.random() * 4)) +
+    " years old, an adolescent.",
+  "You are " +
+    (6 + Math.ceil(Math.random() * 4)) +
+    " years old, an adolescent.",
+  "You are " +
+    (6 + Math.ceil(Math.random() * 4)) +
+    " years old, an adolescent.",
+  "You are " +
+    (10 + Math.ceil(Math.random() * 15)) +
+    " years old, a young adult.",
+  "You are " +
+    (10 + Math.ceil(Math.random() * 15)) +
+    " years old, a young adult.",
+  "You are " +
+    (10 + Math.ceil(Math.random() * 15)) +
+    " years old, a young adult.",
+  "You are " +
+    (10 + Math.ceil(Math.random() * 15)) +
+    " years old, a young adult.",
+  "You are " +
+    (10 + Math.ceil(Math.random() * 15)) +
+    " years old, a young adult.",
+  "You are " + (25 + Math.ceil(Math.random() * 25)) + " years old, an adult.",
+  "You are " + (25 + Math.ceil(Math.random() * 25)) + " years old, an adult.",
+  "You are " + (25 + Math.ceil(Math.random() * 25)) + " years old, an adult.",
+
+  "You are " +
+    (50 + Math.ceil(Math.random() * 25)) +
+    " years old, an older adult.",
+  "You are " +
+    (50 + Math.ceil(Math.random() * 25)) +
+    " years old, an older adult.",
+
+  "You are " +
+    (75 + Math.ceil(Math.random() * 25)) +
+    " years old, a venerable adult.",
 ];
 
 var goblinBuild = [
@@ -257,112 +281,8 @@ var goblinNames = [
   "Quibblequill",
 ];
 
-function generateGoblin() {
-  resetGoblinStats();
-  generateSecondaryGoblinStats();
-
-  var detailString = "";
-  var gearString = "";
-  var goblinAgeValue = getGoblinAge();
-  detailString += "<div>" + goblinAgeValue + "</div>";
-  detailString += "<div>" + getGoblinBuild() + "</div>";
-  detailString += "<div>" + getGoblinApp() + "</div>";
-  detailString += "<div>" + getGoblinHabit() + "</div>";
-  detailString += "<div>" + getGoblinBackground() + "</div>";
-  detailString += "<div>" + getGoblinPersonality() + "</div>";
-  goblinGear = goblinStartingCash();
-  detailString += "<div>You are " + goblinGear[0] + ".</div>";
-  detailString += "<div class='proftitle'>Professions</div>";
-
-  getGoblinProfTypes();
-  if (goblinStats.prac > 0) {
-    detailString += "<div class='profcat'>Academic:</div>";
-    goblinLearnLanguage(goblinStats.prac);
-    for (i = 0; i < goblinStats.prac; i++) {
-      detailString += "<div class='prof'>" + goblinAddAcademic() + "</div>";
-    }
-  }
-  if (goblinStats.prco > 0) {
-    detailString += "<div class='profcat'>Common:</div>";
-    for (i = 0; i < goblinStats.prco; i++) {
-      detailString += "<div class='prof'>" + goblinAddCommon() + "</div>";
-    }
-  }
-  if (goblinStats.prcr > 0) {
-    detailString += "<div class='profcat'>Criminal:</div>";
-    for (i = 0; i < goblinStats.prcr; i++) {
-      detailString += "<div class='prof'>" + goblinAddCriminal() + "</div>";
-    }
-  }
-  if (goblinStats.prma > 0) {
-    detailString += "<div class='profcat'>Martial:</div>";
-    for (i = 0; i < goblinStats.prma; i++) {
-      detailString += "<div class='prof'>" + goblinAddMartial() + "</div>";
-    }
-  }
-  if (goblinStats.prre > 0) {
-    detailString += "<div class='profcat'>Religious:</div>";
-    for (i = 0; i < goblinStats.prre; i++) {
-      detailString += "<div class='prof'>" + goblinAddReligious() + "</div>";
-    }
-  }
-  if (goblinStats.prwi > 0) {
-    detailString += "<div class='profcat'>Wilderness:</div>";
-    for (i = 0; i < goblinStats.prwi; i++) {
-      detailString += "<div class='prof'>" + goblinAddWilderness() + "</div>";
-    }
-  }
-
-  detailString += "<div class='proftitle'>Abilities</div>";
-  detailString += "<div>" + goblinSkills + "</div>";
-  detailString += "<div><b>Speak: </b>" + goblinSpeakList() + "</div>";
-  detailString += "<div><b>Read/Write: </b>" + goblinReadList() + "</div>";
-
-  gearString += "<div class='proftitle'>Gear</div>";
-  gearString += "<div>" + goblinGear[1] + "</div>";
-  gearString += "<div><br></div>";
-
-  gearString += "<div>" + goblinInterestingThing() + "</div>";
-
-  goblinNudgeStats();
-
-  //   if (goblinStats.prac > 0
-  //     )
-  //   then { detailString +="<div>Academic</div>";}
-
-  //   console.log(detailString);
-  //   console.log(document.querySelector(".charDetails").innerHTML);
-  document.querySelector(".chardetails").innerHTML = detailString;
-  document.querySelector(".gear").innerHTML = gearString;
-
-  document.querySelector("#str").innerHTML = goblinStats.strength;
-  document.querySelector("#strmod").innerHTML = goblinStats.strmod;
-  document.querySelector("#agi").innerHTML = goblinStats.agility;
-  document.querySelector("#agimod").innerHTML = goblinStats.agimod;
-  document.querySelector("#int").innerHTML = goblinStats.intellect;
-  document.querySelector("#intmod").innerHTML = goblinStats.intmod;
-  document.querySelector("#wil").innerHTML = goblinStats.will;
-  document.querySelector("#wilmod").innerHTML = goblinStats.wilmod;
-  document.querySelector("#per").innerHTML = goblinStats.perception;
-  document.querySelector("#permod").innerHTML = goblinStats.permod;
-  document.querySelector("#health").innerHTML = goblinStats.health;
-  document.querySelector("#speed").innerHTML = goblinStats.speed;
-  document.querySelector("#recovery").innerHTML = goblinStats.recovery;
-  document.querySelector("#bdef").innerHTML = goblinStats.defence;
-  document.querySelector("#damage").innerHTML = 0;
-  document.querySelector("#insanity").innerHTML = goblinStats.insanity;
-  document.querySelector("#corruption").innerHTML = goblinStats.corruption;
-  document.querySelector(".bits").innerHTML = goblinStats.bits;
-  document.querySelector(".cp").innerHTML = goblinStats.cp;
-  document.querySelector(".ss").innerHTML = goblinStats.ss;
-  document.querySelector(".gc").innerHTML = goblinStats.gc;
-
-  document.querySelector(".charname").innerHTML = goblinNameGet();
-  document.querySelector(".ancestry").innerHTML = "Goblin";
-}
-
-function resetGoblinStats() {
-  goblinStats = {
+function setGoblinStats() {
+  charStats = {
     strength: 8,
     agility: 12,
     intellect: 10,
@@ -370,11 +290,16 @@ function resetGoblinStats() {
     speed: 10,
     corruption: 0,
     insanity: 0,
-    size: "1/2",
+    perbonus: 1,
+    healthbonus: 0,
+    defbonus: 0,
+    speedbonus: 0,
+    charsize: "1/2",
     cp: 0,
     ss: 0,
     gc: 0,
     bits: 0,
+    professions: 2,
     prac: 0,
     prcr: 0,
     prma: 0,
@@ -384,44 +309,29 @@ function resetGoblinStats() {
     speak: 2,
     read: 0,
   };
+
+  bumpStats();
+  getSecondaryStats();
 }
 
-function generateSecondaryGoblinStats() {
-  goblinStats.perception = goblinStats.intellect + 1;
-  goblinStats.health = goblinStats.strength;
-  goblinStats.recovery = Math.floor(goblinStats.health / 4);
-  goblinStats.defence = goblinStats.agility;
-  goblinStats.strmod = calculateBonus(goblinStats.strength);
-  goblinStats.agimod = calculateBonus(goblinStats.agility);
-  goblinStats.intmod = calculateBonus(goblinStats.intellect);
-  goblinStats.wilmod = calculateBonus(goblinStats.will);
-  goblinStats.permod = calculateBonus(goblinStats.perception);
+function getGoblinName() {
+  return goblinNames[Math.floor(Math.random() * goblinNames.length)];
+}
+
+function setGoblinDetails() {
+  var goblinDetails = "<div>" + getGoblinAge() + "</div>";
+  goblinDetails += "<div>" + getGoblinBuild() + "</div>";
+  goblinDetails += "<div>" + getGoblinApp() + "</div>";
+  goblinDetails += "<div>" + getGoblinHabit() + "</div>";
+  goblinDetails += "<div>" + getGoblinBackground() + "</div>";
+  goblinDetails += "<div>" + getGoblinPersonality() + "</div>";
+
+  return goblinDetails;
 }
 
 function getGoblinAge() {
-  var ageRoll = 0;
-  var thisGoblin;
-  ageRoll = rollxdx(3, 6);
-  thisGoblin = goblinAge[ageRoll];
-  if (thisGoblin.short == "child") {
-    thisGoblin.agenum = 6;
-  } else if (thisGoblin.short == "kid") {
-    thisGoblin.agenum = 6 + Math.ceil(Math.random() * 4);
-  } else if (thisGoblin.short == "ya") {
-    thisGoblin.agenum = 10 + Math.ceil(Math.random() * 15);
-  } else if (thisGoblin.short == "ad") {
-    thisGoblin.agenum = 25 + Math.ceil(Math.random() * 25);
-  } else if (thisGoblin.short == "oa") {
-    thisGoblin.agenum = 50 + Math.ceil(Math.random() * 25);
-  } else if (thisGoblin.short == "va") {
-    thisGoblin.agenum = 75 + Math.floor(Math.random() * 25);
-  }
-
-  var goblinAgeString =
-    thisGoblin.verbiage + "; " + thisGoblin.agenum + " years old.";
-  console.log(goblinAgeString);
-
-  return goblinAgeString;
+  var ageRoll = rollxdx(3, 6);
+  return goblinAge[ageRoll];
 }
 
 function getGoblinBuild() {
@@ -443,21 +353,21 @@ function getGoblinBackground() {
   var backgroundValue =
     goblinBackground[Math.floor(Math.random() * goblinBackground.length)];
   if (backgroundValue.match("You start the game with 1 Insanity.")) {
-    goblinStats.insanity += 1;
+    charStats.insanity += 1;
   } else if (backgroundValue.match("You start the game with 1 Corruption.")) {
-    goblinStats.corruption += 1;
+    charStats.corruption += 1;
   } else if (
     backgroundValue == "You came into money and start the game with 2d6 cp"
   ) {
     var easyMoney = Math.ceil(Math.random() * 6) + Math.ceil(Math.random() * 6);
-    goblinStats.cp += easyMoney;
+    charStats.cp += easyMoney;
     backgroundValue =
       "You came into money and start the game with " + easyMoney + "cp.";
   } else if (
     backgroundValue ==
     "You are an unrepentant criminal and have an additional criminal profession."
   ) {
-    goblinStats.prcr += 1;
+    charStats.prcr += 1;
   } else if (backgroundValue.match("You speak one additional language.")) {
     goblinLearnLanguage();
   }
@@ -470,248 +380,4 @@ function getGoblinPersonality() {
   buildRoll = rollxdx(3, 6);
 
   return goblinPersonality[buildRoll];
-}
-
-function getGoblinProfTypes() {
-  var dieroll = 0;
-  for (i = 0; i < 2; i++) {
-    dieroll = Math.ceil(Math.random() * 6);
-    if (dieroll == 1) {
-      goblinStats.prac += 1;
-    } else if (dieroll == 2) {
-      goblinStats.prcr += 1;
-    } else if (dieroll == 3) {
-      goblinStats.prco += 1;
-    } else if (dieroll == 4) {
-      goblinStats.prma += 1;
-    } else if (dieroll == 5) {
-      goblinStats.prre += 1;
-    } else if (dieroll == 6) {
-      goblinStats.prwi += 1;
-    }
-  }
-}
-
-function goblinLearnLanguage(langs) {
-  goblinStats.speak += 1;
-}
-
-function goblinLearntoRead() {
-  goblinStats.read += 1;
-}
-
-function goblinAddAcademic() {
-  var profValue =
-    academicProfessions[Math.floor(Math.random() * academicProfessions.length)];
-  goblinLearntoRead();
-
-  return profValue;
-}
-
-function goblinAddCommon() {
-  var profValue =
-    commonProfessions[Math.floor(Math.random() * commonProfessions.length)];
-  if (profValue.match("Poet")) {
-    goblinLearntoRead();
-  } else if (profValue.match("Writer")) {
-    goblinLearntoRead();
-  }
-
-  return profValue;
-}
-
-function goblinAddCriminal() {
-  var profValue =
-    criminalProfessions[Math.floor(Math.random() * criminalProfessions.length)];
-
-  return profValue;
-}
-
-function goblinAddMartial() {
-  var profValue =
-    martialProfessions[Math.floor(Math.random() * martialProfessions.length)];
-
-  return profValue;
-}
-
-function goblinAddWilderness() {
-  var profValue =
-    wildernessProfessions[
-      Math.floor(Math.random() * wildernessProfessions.length)
-    ];
-
-  return profValue;
-}
-
-function goblinAddReligious() {
-  var profValue =
-    religiousProfessions[
-      Math.floor(Math.random() * religiousProfessions.length)
-    ];
-  if (
-    profValue === "Devotee" ||
-    profValue === "Evangelist" ||
-    profValue === "Evangelist" ||
-    profValue === "Acolyte of the New God"
-  ) {
-    goblinLearntoRead();
-  }
-  return profValue;
-}
-
-function goblinStartingCash() {
-  var dieRoll = rollxdx(3, 6);
-  console.log("Wealth Roll: " + dieRoll);
-  if (dieRoll == 4 || dieRoll == 3) {
-    goblinStats.bits += Math.ceil(Math.random() * 6);
-    return ["destitute", destituteGear()];
-  } else if (dieRoll >= 5 && dieRoll <= 8) {
-    goblinStats.bits +=
-      Math.ceil(Math.random() * 6) + Math.ceil(Math.random() * 6);
-    return ["poor", poorGear()];
-  } else if (dieRoll >= 9 && dieRoll <= 13) {
-    goblinStats.cp = Math.ceil(Math.random() * 6);
-    return ["getting by", getByGear()];
-  } else if (dieRoll >= 14 && dieRoll <= 16) {
-    goblinStats.cp =
-      Math.ceil(Math.random() * 6) + Math.ceil(Math.random() * 6);
-    return ["comfortable", comfortableGear()];
-  } else if (dieRoll == 17) {
-    goblinStats.ss = Math.ceil(Math.random() * 6);
-
-    return ["wealthy", wealthyGear()];
-  } else if (dieRoll == 18) {
-    goblinStats.ss =
-      Math.ceil(Math.random() * 6) + Math.ceil(Math.random() * 6);
-    return ["rich", richGear()];
-  }
-}
-
-function goblinInterestingThing() {
-  return interestingThings[
-    Math.floor(Math.random() * interestingThings.length)
-  ];
-}
-
-function goblinNudgeStats() {
-  var check1 = rollxdx(1, 4);
-  if (check1 == 1) {
-    var dieroll = rollxdx(1, 4);
-    if (dieroll == 1) {
-      lowerGoblinStrength();
-    } else if (dieroll == 2) {
-      lowerGoblinAgility();
-    } else if (dieroll == 3) {
-      lowerGoblinIntellect();
-    } else if (dieroll == 4) {
-      lowerGoblinWill();
-    }
-  }
-}
-
-function lowerGoblinStrength() {
-  goblinStats.strength += -1;
-  var dieroll = rollxdx(1, 3);
-  if (dieroll == 1) {
-    raiseGoblinAgility();
-  } else if (dieroll == 2) {
-    raiseGoblinIntellect();
-  } else if (dieroll == 3) {
-    raiseGoblinWill();
-  }
-  console.log("Lowered Strength");
-}
-function lowerGoblinAgility() {
-  goblinStats.agility += -1;
-  var dieroll = rollxdx(1, 3);
-  if (dieroll == 1) {
-    raiseGoblinStrength();
-  } else if (dieroll == 2) {
-    raiseGoblinIntellect();
-  } else if (dieroll == 3) {
-    raiseGoblinWill();
-  }
-  console.log("Lowered Agulity");
-}
-
-function lowerGoblinIntellect() {
-  goblinStats.intellect += -1;
-  var dieroll = rollxdx(1, 3);
-  if (dieroll == 1) {
-    raiseGoblinStrength();
-  } else if (dieroll == 2) {
-    raiseGoblinAgility();
-  } else if (dieroll == 3) {
-    raiseGoblinWill();
-  }
-  console.log("Lowered Int");
-}
-
-function lowerGoblinWill() {
-  goblinStats.will += -1;
-  var dieroll = rollxdx(1, 3);
-  if (dieroll == 1) {
-    raiseGoblinStrength();
-  } else if (dieroll == 2) {
-    raiseGoblinIntellect();
-  } else if (dieroll == 3) {
-    raiseGoblinAgility();
-  }
-  console.log("Lowered Will");
-}
-
-function raiseGoblinStrength() {
-  goblinStats.strength += 1;
-  generateSecondaryGoblinStats();
-
-  console.log("Raised STR");
-}
-
-function raiseGoblinAgility() {
-  goblinStats.agility += 1;
-  generateSecondaryGoblinStats();
-
-  console.log("Raised agi");
-}
-
-function raiseGoblinIntellect() {
-  goblinStats.intellect += 1;
-  generateSecondaryGoblinStats();
-
-  console.log("Raised INT");
-}
-
-function raiseGoblinWill() {
-  goblinStats.will += 1;
-  generateSecondaryGoblinStats();
-
-  console.log("Raised Will");
-}
-
-function goblinSpeakList() {
-  var speakList = "";
-  for (i = 0; i < goblinStats.speak; i++) {
-    speakList += goblinLanguageStack[i];
-    if (i < goblinStats.speak - 1) {
-      speakList += ", ";
-    }
-  }
-  return speakList;
-}
-function goblinReadList() {
-  var readList = "";
-  for (i = 0; i < goblinStats.read; i++) {
-    readList += goblinLanguageStack[i];
-    if (i < goblinStats.read - 1) {
-      readList += ", ";
-    }
-  }
-  if (goblinStats.read == 0) {
-    readList = "None";
-  }
-  return readList;
-}
-
-function goblinNameGet() {
-  return goblinNames[Math.floor(Math.random() * goblinNames.length)];
 }

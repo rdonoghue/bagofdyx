@@ -111,3 +111,15 @@
 .rcol {
   visibility: hidden;
 }
+
+button.generator {
+  background: var(--color5);
+  width: 13rem;
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  margin-bottom: 1ch;
+}
+
+button.generator:hover {
+  background: var(--color-pop);
+}

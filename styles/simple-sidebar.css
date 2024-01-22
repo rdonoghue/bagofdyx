@@ -103,6 +103,11 @@ aside {
   padding: 1rem;
 }
 
+aside ul {
+  position: sticky;
+  top: 2rem;
+}
+
 aside ul li {
   display: block;
   list-style-type: none;
@@ -130,6 +135,7 @@ article {
   background-color: var(--reading-background);
   padding-left: 2rem;
   min-height: 40rem;
+  padding-bottom: 2rem;
 }
 
 footer {
