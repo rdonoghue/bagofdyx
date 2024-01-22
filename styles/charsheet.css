@@ -114,7 +114,8 @@
 
 button.generator {
   background: var(--color5);
-  width: 13rem;
+  width: 6rem;
+  font-weight: 400;
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   margin-bottom: 1ch;
@@ -122,4 +123,12 @@ button.generator {
 
 button.generator:hover {
   background: var(--color-pop);
+}
+
+aside {
+  width: 8rem;
+}
+
+article {
+  width: 100%;
 }
