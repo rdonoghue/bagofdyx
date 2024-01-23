@@ -13,12 +13,12 @@ var clockworkAge = [
   "",
   "",
   "",
-  "You are " + Math.ceil(Math.random() * 5) + " years old, a new clockwork.",
-  "You are " + Math.ceil(Math.random() * 5) + " years old, a new clockwork.",
-  "You are " + Math.ceil(Math.random() * 5) + " years old, a new clockwork.",
-  "You are " + Math.ceil(Math.random() * 5) + " years old, a new clockwork.",
-  "You are " + Math.ceil(Math.random() * 5) + " years old, a new clockwork.",
-  "You are " + Math.ceil(Math.random() * 5) + " years old, a new clockwork.",
+  "You are " + rollYears(6) + " old, a new clockwork.",
+  "You are " + rollYears(6) + " old, a new clockwork.",
+  "You are " + rollYears(6) + " old, a new clockwork.",
+  "You are " + rollYears(6) + " old, a new clockwork.",
+  "You are " + rollYears(6) + " old, a new clockwork.",
+  "You are " + rollYears(6) + " old, a new clockwork.",
 
   "You are " +
     (6 + Math.ceil(Math.random() * 4)) +
@@ -34,13 +34,13 @@ var clockworkAge = [
     " years old, an experienced clockwork.",
   "You are " +
     (10 + Math.ceil(Math.random() * 40)) +
-    " years old, old for a clockwork.",
+    " years old, which is old for a clockwork.",
   "You are " +
     (10 + Math.ceil(Math.random() * 40)) +
-    " years old, old for a clockwork.",
+    " years old, which is old for a clockwork.",
   "You are " +
     (10 + Math.ceil(Math.random() * 40)) +
-    " years old, old for a clockwork.",
+    " years old, which is old for a clockwork.",
   "You are " +
     (50 + Math.ceil(Math.random() * 100)) +
     " years old, very old for a clockwork.",
@@ -83,22 +83,20 @@ var clockworkApp = [
 var clockworkBackground = [
   "Your soul came from Hell. Start the game with 1d3 Corruption.",
   "Your soul was plucked from the Underworld before it could forget its former life. Start the game with 1d6 Insanity and add an extra profession.",
-  "You spent " + Math.ceil(Math.random() * 20) + " years in a dormant state.",
+  "You spent " + rollYears(6) + " in a dormant state.",
   "Your maker treated you poorly. You escaped and now fear your maker will find you.",
   "Fire, plague, or monsters destroyed your home and you are the sole survivor.",
   "You were stolen from the workshop where you were made and lived as a slave for " +
-    Math.ceil(Math.random() * 6) +
-    " years.",
+    rollYears(6) +
+    ".",
   "Goblins captured you and almost took you apart for scrap materials. You have replaced your missing components with bits of wood, old weapons, and other rubbish.",
   "You were left to find your own way in the world when your maker died.",
   "You fell off a boat and spent 2 years walking to shore.",
-  "You worked to fulfill your purpose for " +
-    Math.ceil(Math.random() * 6) +
-    " years.",
+  "You worked to fulfill your purpose for " + rollYears(6) + ".",
   "Choose a member of the group. That character found you and turned your key. You owe that character a debt.",
   "You were one of " +
-    Math.ceil(Math.random() * 6) +
-    " other clockworks made at the same time. You hope to find them one day.",
+    (Math.ceil(Math.random() * 6) + 1) +
+    " clockworks made at the same time. You hope to find the others one day.",
   "You were made to be a translator. You can speak one additional language.",
   "You were made to be a scribe. You know how to read and write the Common Tongue.",
   "Your maker set you free to find your destiny.",
@@ -236,6 +234,7 @@ var clockworkNames = [
 
 function setClockworkStats() {
   charStats = {
+    ancestry: "Clockwork",
     strength: 9,
     agility: 8,
     intellect: 9,

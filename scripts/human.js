@@ -114,7 +114,11 @@ var humanAge = [
   "",
   "",
   "",
-  "You are " + Math.ceil(Math.random() * 11) + " years old, a child.",
+  "You are " +
+    (Math.ceil(Math.random() * 5) +
+      Math.ceil(Math.random() * 3) +
+      Math.ceil(Math.random() * 2)) +
+    " years old, a child.",
   "You are " +
     (11 + Math.ceil(Math.random() * 6)) +
     " years old, an adolescent.",
@@ -235,15 +239,11 @@ var humanAppearance = [
 var humanBackground = [
   "You died and returned to life. You start the game with 1d6 Insanity.",
   "You were briefly possessed by a demon. You start the game with 1 Corruption.",
-  "You spent " +
-    Math.ceil(Math.random() * 6) +
-    " years as a prisoner in a dungeon.",
+  "You spent " + rollYears(6) + " as a prisoner in a dungeon.",
   "You murdered someone in cold blood. You start the game with 1 Corruption.",
   "You caught and recovered from a terrible disease.",
   "You belonged to a strange cult and saw many strange things. You start the game with 1 Insanity.",
-  "The faerie held you prisoner for " +
-    Math.ceil(Math.random() * 20) +
-    " years.",
+  "The faerie held you prisoner for " + rollYears(20) + ".",
   "You lost a loved one and their loss haunts you still.",
   "You lost a finger, a few teeth, or an ear, or you gained a scar.",
   "You earned a living working in your profession.",
@@ -305,6 +305,7 @@ var humanReligion = [
 
 function setHumanStats() {
   charStats = {
+    ancestry: "Human",
     strength: 10,
     agility: 10,
     intellect: 10,

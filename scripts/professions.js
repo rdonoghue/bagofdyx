@@ -567,7 +567,6 @@ function setProfessions() {
 
   for (i = 0; i < charStats.professions; i++) {
     myd6 = rollxdx(1, 6);
-    console.log(myd6);
     if (myd6 === 1) {
       charStats.prac += 1;
     } else if (myd6 === 2) {

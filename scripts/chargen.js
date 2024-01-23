@@ -1,43 +1,50 @@
-var Ancestry = "";
-var ancestryList = ["Goblin", "Human", "Clockwork"];
+// document
+//   .querySelector("#generate-button")
+//   .addEventListener("click", function () {
+//     document.querySelector(".lcol").style.visibility = "visible";
+//     document.querySelector(".midcol").style.visibility = "visible";
+//     document.querySelector(".rcol").style.visibility = "visible";
+//     Ancestry = "Goblin";
+//     generateCharacter();
+//   });
 
-document
-  .querySelector("#generate-button")
-  .addEventListener("click", function () {
-    document.querySelector(".lcol").style.visibility = "visible";
-    document.querySelector(".midcol").style.visibility = "visible";
-    document.querySelector(".rcol").style.visibility = "visible";
-    Ancestry = "Goblin";
-    generateCharacter();
-  });
+// document.querySelector("#new-button").addEventListener("click", function () {
+//   document.querySelector(".lcol").style.visibility = "visible";
+//   document.querySelector(".midcol").style.visibility = "visible";
+//   document.querySelector(".rcol").style.visibility = "visible";
+//   Ancestry = "Human";
+//   generateCharacter();
+// });
 
-document.querySelector("#new-button").addEventListener("click", function () {
-  document.querySelector(".lcol").style.visibility = "visible";
-  document.querySelector(".midcol").style.visibility = "visible";
-  document.querySelector(".rcol").style.visibility = "visible";
-  Ancestry = "Human";
-  generateCharacter();
-});
+// document
+//   .querySelector("#clockwork-button")
+//   .addEventListener("click", function () {
+//     document.querySelector(".lcol").style.visibility = "visible";
+//     document.querySelector(".midcol").style.visibility = "visible";
+//     document.querySelector(".rcol").style.visibility = "visible";
+//     Ancestry = "Clockwork";
+//     generateCharacter();
+//   });
 
-document
-  .querySelector("#clockwork-button")
-  .addEventListener("click", function () {
-    document.querySelector(".lcol").style.visibility = "visible";
-    document.querySelector(".midcol").style.visibility = "visible";
-    document.querySelector(".rcol").style.visibility = "visible";
-    Ancestry = "Clockwork";
-    generateCharacter();
-  });
+// document
+//   .querySelector("#changeling-button")
+//   .addEventListener("click", function () {
+//     document.querySelector(".lcol").style.visibility = "visible";
+//     document.querySelector(".midcol").style.visibility = "visible";
+//     document.querySelector(".rcol").style.visibility = "visible";
+//     Ancestry = "Changeling";
+//     generateCharacter();
+//   });
 
-document.querySelector("#random-button").addEventListener("click", function () {
-  document.querySelector(".lcol").style.visibility = "visible";
-  document.querySelector(".midcol").style.visibility = "visible";
-  document.querySelector(".rcol").style.visibility = "visible";
-  var dieRoll = rollxdx(1, 3) - 1;
+// document.querySelector("#random-button").addEventListener("click", function () {
+//   document.querySelector(".lcol").style.visibility = "visible";
+//   document.querySelector(".midcol").style.visibility = "visible";
+//   document.querySelector(".rcol").style.visibility = "visible";
+//   var dieRoll = rollxdx(1, 3) - 1;
 
-  Ancestry = ancestryList[dieRoll];
-  generateCharacter();
-});
+//   Ancestry = ancestryList[dieRoll];
+//   generateCharacter();
+// });
 
 var nameString;
 var charStats;
@@ -49,36 +56,51 @@ var professionString = "";
 var abilityString = "";
 var gearString = "";
 
-function generateCharacter() {
+function generateCharacter(ancestry) {
+  let ancestryList = ["goblin", "human", "clockwork", "changeling"];
+
+  document.querySelector(".lcol").style.visibility = "visible";
+  document.querySelector(".midcol").style.visibility = "visible";
+  document.querySelector(".rcol").style.visibility = "visible";
   charStats = "";
   nameString = "";
-  console.log(charStats);
+  myLog(charStats, "generateCharacter - this should be empty", 1);
   specialGear = "";
-  noteString = "";
+  noteString = "Notes:<br>";
   professionString = "";
   detailString = "";
   abilityString = "";
   gearString = "";
   specialGear = "";
 
-  if (Ancestry == "Human") {
+  if (ancestry == "random") {
+    ancestry = ancestryList[Math.floor(Math.random() * ancestryList.length)];
+  }
+
+  if (ancestry == "human") {
     languageList = humanLanguageStack;
     abilityString = humanAbilityString;
     setHumanStats();
     detailString += setHumanDetails();
     nameString = getHumanName();
-  } else if (Ancestry == "Goblin") {
+  } else if (ancestry == "goblin") {
     languageList = goblinLanguageStack;
     abilityString = goblinAbilityString;
     setGoblinStats();
     detailString += setGoblinDetails();
     nameString = getGoblinName();
-  } else if (Ancestry == "Clockwork") {
+  } else if (ancestry == "clockwork") {
     languageList = clockworkLanguageStack;
     abilityString = clockworkAbilityString;
     setClockworkStats();
     detailString += setClockworkDetails();
     nameString = getClockworkName();
+  } else if (ancestry == "changeling") {
+    languageList = changelingLanguageStack;
+    abilityString = changelingAbilityString;
+    setChangelingStats();
+    detailString += setChangelingDetails();
+    nameString = getChangelingName();
   }
 
   professionString = setProfessions();
@@ -96,7 +118,8 @@ function generateCharacter() {
   writeMoney();
   writeName(nameString);
 
-  console.log(charStats);
+  myLog(charStats, "End of generateCharacter - this should be full", 1);
+  myLog(noteString, "Note String at the end of Chargen", 2);
 }
 
 function getSecondaryStats() {
@@ -110,7 +133,7 @@ function getSecondaryStats() {
   charStats.wilmod = calculateBonus(charStats.will);
   charStats.permod = calculateBonus(charStats.perception);
 
-  if (Ancestry == "Clockwork") {
+  if (charStats.ancestry == "Clockwork") {
     charStats.defence = 13 + charStats.defbonus;
   }
 }
@@ -135,7 +158,7 @@ function writeStats() {
   document.querySelector("#damage").innerHTML = 0;
   document.querySelector("#insanity").innerHTML = charStats.insanity;
   document.querySelector("#corruption").innerHTML = charStats.corruption;
-  document.querySelector(".ancestry").innerHTML = Ancestry;
+  document.querySelector(".ancestry").innerHTML = charStats.ancestry;
 }
 
 function writeMoney() {
@@ -186,7 +209,6 @@ function lowerStrength() {
     raiseWill();
   }
   noteString += "Lowered Strength, ";
-  console.log("Lowered Strength");
 }
 function lowerAgility() {
   charStats.agility += -1;
@@ -199,8 +221,6 @@ function lowerAgility() {
     raiseWill();
   }
   noteString += "Lowered Agility, ";
-
-  console.log("Lowered Agulity");
 }
 
 function lowerIntellect() {
@@ -214,8 +234,6 @@ function lowerIntellect() {
     raiseWill();
   }
   noteString += "Lowered Intellect, ";
-
-  console.log("Lowered Int");
 }
 
 function lowerWill() {
@@ -229,39 +247,30 @@ function lowerWill() {
     raiseAgility();
   }
   noteString += "Lowered Will, ";
-
-  console.log("Lowered Will");
 }
 
 function raiseStrength() {
   charStats.strength += 1;
 
-  noteString += "raised Strength.<br> ";
-
-  console.log("Raised STR");
+  noteString += "Raised Strength.<br> ";
 }
 
 function raiseAgility() {
   charStats.agility += 1;
 
-  console.log("Raised agi");
-  noteString += "raised Agility.<br> ";
+  noteString += "Raised Agility.<br> ";
 }
 
 function raiseIntellect() {
   charStats.intellect += 1;
 
-  noteString += "raised Intellect.<br> ";
-
-  console.log("Raised INT");
+  noteString += "Raised Intellect.<br> ";
 }
 
 function raiseWill() {
   charStats.will += 1;
 
-  noteString += "raised Will.<br> ";
-
-  console.log("Raised Will");
+  noteString += "Raised Will.<br> ";
 }
 
 function speakList() {
@@ -307,7 +316,7 @@ function startingKit() {
   var kitString = "<div class='proftitle'>Gear</div><div>";
   var dieRoll = rollxdx(3, 6);
 
-  console.log("Wealth Roll: " + dieRoll);
+  myLog("Wealth Roll: " + dieRoll, "startinKit()", 1);
   if (dieRoll == 4 || dieRoll == 3) {
     charStats.bits += Math.ceil(Math.random() * 6);
     kitString += destituteGear();
@@ -332,7 +341,7 @@ function startingKit() {
 
   kitString += "</div>";
 
-  console.log(kitString);
+  myLog(kitString, "ENd of StartingKit()", 1);
   return kitString;
 }
 
@@ -363,10 +372,33 @@ function rollxdx(dicenum = 1, dicesize = 6) {
     latestRoll = Math.ceil(Math.random() * dicesize);
 
     diceResult = diceResult + latestRoll;
-    // console.log(latestRoll);
   }
   diceAverage = Math.round((diceResult / dicenum) * 100) / 100;
-  //   console.log(diceResult);
-  //   console.log("AVG: " + diceAverage);
+
   return diceResult;
+}
+
+function rollYears(years = 6) {
+  var dieRoll = Math.ceil(Math.random() * years);
+  if (dieRoll === 1) {
+    return "1 year";
+  } else {
+    return dieRoll + " years";
+  }
+}
+
+function clearPage() {
+  document.querySelector(".lcol").style.visibility = "hidden";
+  document.querySelector(".midcol").style.visibility = "hidden";
+  document.querySelector(".rcol").style.visibility = "hidden";
+
+  charStats = "";
+  nameString = "";
+  specialGear = "";
+  noteString = "";
+  professionString = "";
+  detailString = "";
+  abilityString = "";
+  gearString = "";
+  specialGear = "";
 }

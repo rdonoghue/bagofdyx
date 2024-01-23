@@ -56,6 +56,12 @@
       type="module"
       defer
     ></script>
+    <script
+      type="text/javascript"
+      src="../scripts/changeling.js"
+      type="module"
+      defer
+    ></script>
   </head>
   <body>
     <header>
@@ -75,11 +81,46 @@
     <main>
       <aside>
         <ul>
-          <button class="generator" id="generate-button">Goblin</button>
+          <button
+            class="generator"
+            id="goblin"
+            onClick="generateCharacter(this.id)"
+          >
+            Goblin
+          </button>
 
-          <button class="generator" id="new-button">Human</button>
-          <button class="generator" id="clockwork-button">Clockwork</button>
-          <button class="generator" id="random-button">Random</button>
+          <button
+            class="generator"
+            id="human"
+            onClick="generateCharacter(this.id)"
+          >
+            Human
+          </button>
+          <button
+            class="generator"
+            id="clockwork"
+            onClick="generateCharacter(this.id)"
+          >
+            Clockwork
+          </button>
+          <button
+            class="generator"
+            id="changeling"
+            onClick="generateCharacter(this.id)"
+          >
+            Changeling
+          </button>
+
+          <button
+            class="generator"
+            id="random"
+            onClick="generateCharacter(this.id)"
+          >
+            Random
+          </button>
+          <button class="generator" id="clear" onClick="clearPage()">
+            Clear
+          </button>
         </ul>
       </aside>
       <article>

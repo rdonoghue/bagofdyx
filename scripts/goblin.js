@@ -12,7 +12,7 @@ var goblinAbilityString =
 var goblinAge = [
   "",
   "",
-  "You are " + Math.ceil(Math.random() * 5) + " years old, a child.",
+  "You are " + rollYears(6) + " old, a child.",
   "You are " +
     (6 + Math.ceil(Math.random() * 4)) +
     " years old, an adolescent.",
@@ -125,16 +125,14 @@ var goblinHabit = [
 
 var goblinBackground = [
   "You spent the last " +
-    Math.ceil(Math.random() * 6) +
-    " years in a drunken stupor. You're not proud.",
+    rollYears(6) +
+    " in a drunken stupor. You're not proud.",
   "The Goblin King turned you into a toad. You escaped that fate after you convinced an elf maiden to kiss you. When she did and screamed, you killed her. You start the game with 1 Corruption.",
   "You accidentally got your entire tribe killed.",
   "You were orphaned and raised by giant rats.",
   "You accidentally released a demon into the world.",
   "You spent two days believing you were a fearsome dog. You start the game with 1 Insanity.",
-  "A hag made you her love slave for " +
-    Math.ceil(Math.random() * 6) +
-    " years. ",
+  "A hag made you her love slave for " + rollYears(6) + ". ",
   "Dwarfs almost wiped out your tribe. You are one of " +
     Math.ceil(Math.random() * 6) +
     " survivors.",
@@ -283,6 +281,7 @@ var goblinNames = [
 
 function setGoblinStats() {
   charStats = {
+    ancestry: "Goblin",
     strength: 8,
     agility: 12,
     intellect: 10,
