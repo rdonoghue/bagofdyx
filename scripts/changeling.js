@@ -275,8 +275,12 @@ function setChangelingStats() {
     speak: 1,
     read: 0,
   };
-
   bumpStats();
+
+  languageList = changelingLanguageStack;
+  abilityString = changelingAbilityString;
+  detailString += setChangelingDetails();
+  nameString = getChangelingName();
   getSecondaryStats();
 }
 

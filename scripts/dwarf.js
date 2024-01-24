@@ -1,329 +1,299 @@
-var humanAbilityString = "";
-var humanLanguageStack = [
+var dwarfAbilityString = "";
+
+var dwarfLanguageStack = [
   "Dwarf",
   "Common",
-  "High Archaic",
-  "Elvish",
   "Trollish",
   "Dark Speech",
+  "High Archaic",
+  "Elvish",
 ];
 
-var humanNames = [
-  "Aerith",
-  "Eldric",
-  "Lysandra",
-  "Thalion",
-  "Elysia",
-  "Zephyr",
-  "Kieran",
-  "Seraphina",
-  "Finley",
-  "Elowen",
-  "Cedric",
-  "Isolde",
-  "Galadriel",
-  "Ragnar",
-  "Lyra",
-  "Darian",
-  "Aria",
-  "Thorne",
-  "Calista",
-  "Voss",
-  "Alaric",
-  "Morrigan",
-  "Seraphiel",
-  "Valerius",
-  "Amara",
-  "Draven",
-  "Elara",
-  "Nyx",
-  "Varian",
-  "Sylas",
-  "Selene",
-  "Thaddeus",
-  "Vesper",
-  "Lysander",
-  "Belladonna",
-  "Dante",
-  "Morwen",
-  "Magnus",
-  "Isabeau",
-  "Malachai",
-  "Ravenna",
-  "Silas",
-  "Azrael",
-  "Viktor",
-  "Nysandria",
-  "Darius",
-  "Varkan",
-  "Falken",
-  "Cain",
-  "Morgana",
-  "Jareth",
-  "Ignatius",
-  "Bellatrix",
-  "Damien",
-  "Valeria",
-  "Morrigan",
-  "Azariah",
-  "Selena",
-  "Kael",
-  "Thalia",
+var dwarfNames = [
+  "Grumli",
+  "Baldrun",
+  "Durnak",
+  "Thrainor",
+  "Kyrin",
+  "Faldor",
+  "Duroc",
+  "Norgrim",
+  "Orgrim",
+  "Brolin",
+  "Bovar",
+  "Bomli",
+  "Grizzlebeard",
+  "Orik",
+  "Durnar",
+  "Throk",
+  "Thrainin",
+  "Durgrim",
+  "Gormak",
+  "Kurgan",
+  "Hildegar",
+  "Mordan",
+  "Einrik",
+  "Brokkar",
+  "Skaldur",
   "Eirik",
-  "Isolde",
-  "Cassian",
-  "Elarion",
-  "Kiara",
-  "Tavian",
-  "Evelina",
-  "Finnian",
-  "Elara",
-  "Thadric",
-  "Mira",
-  "Rylan",
-  "Iliad",
-  "Zara",
-  "Theron",
-  "Amalia",
-  "Dorian",
-  "Lenora",
-  "Eamon",
-  "Nia",
-  "Aric",
-  "Elaria",
-  "Kaelith",
-  "Selene",
-  "Eirwyn",
-  "Naida",
-  "Thalassa",
-  "Oberon",
-  "Sylas",
-  "Isolda",
-  "Valeria",
-  "Kaldor",
-  "Rowan",
-  "Elysande",
-  "Cyric",
-  "Nyssa",
-  "Fiora",
-  "Lorian",
-  "Aelin",
-  "Thora",
+  "Hrokkar",
+  "Rurik",
+  "Angnar",
+  "Thrainin",
+  "Hilda",
+  "Hulda",
+  "Brunvor",
+  "Asgrim",
+  "Thrainar",
+  "Frigg",
+  "Eilifur",
+  "Einar",
+  "Erling",
+  "Oddrek",
+  "Vili",
+  "Vithar",
+  "Hreidarr",
+  "Hafnar",
+  "Gylfi",
+  "Thrainar",
+  "Valdis",
+  "Ragnarr",
+  "Gunharr",
+  "Olvor",
+  "Eilif",
+  "Hrolf",
+  "Ulfar",
+  "Thrandar",
+  "Ulfgar",
+  "Vitharr",
+  "Hreidarr",
+  "Rurik",
+  "Geirvor",
+  "Hognar",
+  "Hrafnar",
+  "Sigvor",
+  "Hvalar",
+  "Haraldur",
+  "Hjortar",
+  "Thorgrim",
+  "Kjartur",
+  "Leiknir",
+  "Magnus",
+  "Njall",
+  "Orvar",
+  "Rurik",
+  "Snorri",
+  "Steinar",
+  "Thrainar",
+  "Vali",
+  "Vidar",
+  "Yngvar",
+  "Gormar",
+  "Vorin",
+  "Keldan",
+  "Brogur",
+  "Fandral",
+  "Thrainar",
+  "Arin",
+  "Dalvor",
+  "Drogar",
+  "Gragnar",
+  "Valthar",
+  "Thrainar",
+  "Arin",
+  "Durnak",
+  "Gromar",
+  "Hargrim",
+  "Kargan",
+  "Modar",
+  "Rogan",
+  "Thrainar",
+  "Urgar",
+  "Zorak",
 ];
 
-var humanAge = [
+var dwarfAge = [
   "",
   "",
   "",
+  "You are " + (6 + Math.ceil(Math.random() * 14)) + " years old, a child.",
   "You are " +
-    (Math.ceil(Math.random() * 5) +
-      Math.ceil(Math.random() * 3) +
-      Math.ceil(Math.random() * 2)) +
-    " years old, a child.",
-  "You are " +
-    (11 + Math.ceil(Math.random() * 6)) +
+    (20 + Math.ceil(Math.random() * 10)) +
     " years old, an adolescent.",
   "You are " +
-    (11 + Math.ceil(Math.random() * 6)) +
+    (20 + Math.ceil(Math.random() * 10)) +
     " years old, an adolescent.",
   "You are " +
-    (11 + Math.ceil(Math.random() * 6)) +
+    (20 + Math.ceil(Math.random() * 10)) +
     " years old, an adolescent.",
   "You are " +
-    (11 + Math.ceil(Math.random() * 6)) +
+    (20 + Math.ceil(Math.random() * 10)) +
     " years old, an adolescent.",
 
   "You are " +
-    (17 + Math.ceil(Math.random() * 10)) +
+    (30 + Math.ceil(Math.random() * 20)) +
     " years old, a young adult.",
   "You are " +
-    (17 + Math.ceil(Math.random() * 10)) +
+    (30 + Math.ceil(Math.random() * 20)) +
     " years old, a young adult.",
   "You are " +
-    (17 + Math.ceil(Math.random() * 10)) +
+    (30 + Math.ceil(Math.random() * 20)) +
     " years old, a young adult.",
-  "You are " + (27 + Math.ceil(Math.random() * 8)) + " years old, an adult.",
-  "You are " + (27 + Math.ceil(Math.random() * 8)) + " years old, an adult.",
+  "You are " +
+    (30 + Math.ceil(Math.random() * 20)) +
+    " years old, a young adult.",
+  "You are " +
+    (30 + Math.ceil(Math.random() * 20)) +
+    " years old, a young adult.",
+
+  "You are " + (50 + Math.ceil(Math.random() * 50)) + " years old, an adult.",
+  "You are " + (50 + Math.ceil(Math.random() * 50)) + " years old, an adult.",
+  "You are " + (50 + Math.ceil(Math.random() * 50)) + " years old, an adult.",
 
   "You are " +
-    (35 + Math.ceil(Math.random() * 20)) +
-    " years old, a middle-aged adult.",
-  "You are " +
-    (35 + Math.ceil(Math.random() * 20)) +
-    " years old, an  middle-aged adult.",
-  "You are " +
-    (35 + Math.ceil(Math.random() * 20)) +
-    " years old, an  middle-aged adult.",
-
-  "You are " +
-    (55 + Math.ceil(Math.random() * 20)) +
+    (100 + Math.ceil(Math.random() * 50)) +
     " years old, an older adult.",
   "You are " +
-    (55 + Math.ceil(Math.random() * 20)) +
+    (100 + Math.ceil(Math.random() * 50)) +
     " years old, an older adult.",
 
   "You are " +
-    (75 + Math.ceil(Math.random() * 25)) +
+    (150 + Math.ceil(Math.random() * 50)) +
     " years old, a venerable adult.",
 ];
 
-var humanBuild = [
+var dwarfBuild = [
   "",
   "",
   "",
-  "You are short and thin.",
-  "You are short and heavy.",
-  "You are short.",
-  "You are short.",
-  "You are slender.",
-  "You are slender.",
-  "You are of average build.",
-  "You are of average build.",
-  "You are of average build.",
-  "You are of average build.",
-  "You are thicc.",
-  "You are thicc.",
-  "You are tall.",
-  "You are tall.",
-  "You are tall and thin.",
-  "You are very tall and heavy.",
+  "You are short and scrawny.",
+  "You are short and stout.",
+  "You are short and stout.",
+  "You are short and stout.",
+  "You are a bit shorter than other dwaves.",
+  "You are a bit shorter than other dwaves.",
+  "You are of average build, for a dwarf.",
+  "You are of average build, for a dwarf.",
+  "You are of average build, for a dwarf.",
+  "You are of average build, for a dwarf.",
+  "You have a magnificent belly.",
+  "You have a magnificent belly.",
+  "You are surprisingly tall.",
+  "You are surprisingly tall.",
+  "You are surprisingly tall and heavy.",
+];
+var dwarfHabit = [
+  "You pound nails into your skull.",
+  "You grease your body with troll fat.",
+  "You collect the ears of the fallen.",
+  "You will master axe-swallowing someday",
+  "When particularly excited for battle, you light your beard on fire.",
 ];
 
-var lovelyHumanThings = [
-  "lovely eyes",
-  "lucious lips",
-  "a dynamite figure",
-  "an ineffable presence",
-  "a pretty face",
-  "gorgeous hair",
-];
-var uglyHumanThings = [
-  "a vicious scar",
-  "your mismatched features",
-  "a beetle brow",
-  "your unpleasantboils",
-  "a weeping eye",
-  "a mismatched eye",
-];
-
-var humanAppearance = [
+var dwarfAppearance = [
   "",
   "",
   "",
-  "You are hideous. You look like a monster. Children cry when they encounter you, the weak of heart faint when they see you, and one person vomited after getting a good look at your face.",
-  "You are ugly, and people find your visage unpleasant thanks to " +
-    uglyHumanThings[Math.floor(Math.random() * uglyHumanThings.length)] +
-    ".",
-  "Most consider you homely: not quite ugly, but a bit worse than plain.",
-  "Most consider you homely: not quite ugly, but a bit worse than plain.",
-
-  "You are plain and uninteresting to look upon. People notice you, but your appearance fails to make an impression.",
-  "You are plain and uninteresting to look upon. People notice you, but your appearance fails to make an impression.",
-  "You are perfectly average in appearance. You look like everyone else.",
-  "You are perfectly average in appearance. You look like everyone else.",
-  "You are perfectly average in appearance. You look like everyone else.",
-  "You are perfectly average in appearance. You look like everyone else.",
-
-  "You have a physical quality that makes you attractive to others. You have +" +
-    lovelyHumanThings[Math.floor(Math.random() * lovelyHumanThings.length)] +
-    ". ",
-  "You have a physical quality that makes you attractive to others. You have +" +
-    lovelyHumanThings[Math.floor(Math.random() * lovelyHumanThings.length)] +
-    ". ",
-  "You have several attractive physical qualities that make you quite comely.",
-  "You have several attractive physical qualities that make you quite comely.",
-
-  "You are one of the great beauties in the land, an individual of almost unsurpassed form and appearance. People notice you. ",
-  "You put beautiful people to shame. You are so striking, heads turn to follow you wherever you go. People become infatuated with you, stumbling over their words and feeling flustered when you show them attention. There's a fine line between love and hate. Should you spurn the attentions of people you enamor, their affection might sour to resentment and even hatred.",
+  "You have a monstrous appearance, likely due to hard living and several near misses. Your face is a mass of scar tissue, probably missing an ear, an eye, or your nose. " +
+    dwarfHabit[Math.floor(Math.random() * dwarfHabit.length)],
+  "You have a monstrous appearance, likely due to hard living and several near misses. Your face is a mass of scar tissue, probably missing an ear, an eye, or your nose. " +
+    dwarfHabit[Math.floor(Math.random() * dwarfHabit.length)],
+  "You have several interesting features that work together to make you one ugly brute. Filth from digging in the dirt, mites infesting your hair, skin lashed with healing scars, and a rich aroma of vomit-all these contribute to your distinctive style.",
+  "You have several interesting features that work together to make you one ugly brute. Filth from digging in the dirt, mites infesting your hair, skin lashed with healing scars, and a rich aroma of vomit-all these contribute to your distinctive style.",
+  "You are hairy, portly, and grubby.",
+  "You are hairy, portly, and grubby.",
+  "You are a typical dwarf, hairy and portly, but well groomed.",
+  "You are a typical dwarf, hairy and portly, but well groomed.",
+  "You are a typical dwarf, hairy and portly, but well groomed.",
+  "You take pride in your appearance. You stay clean, oil your facial hair, and perhaps braid it or tie it with metal rings.",
+  "You take pride in your appearance. You stay clean, oil your facial hair, and perhaps braid it or tie it with metal rings.",
+  "You take pride in your appearance. You stay clean, oil your facial hair, and perhaps braid it or tie it with metal rings.",
+  "You take pride in your appearance. You stay clean, oil your facial hair, and perhaps braid it or tie it with metal rings.",
+  "You are quite fetching for a dwarf. You have regal features, good bearing, and a deep voice. You take pride in your appearance.",
+  "You are quite fetching for a dwarf. You have regal features, good bearing, and a deep voice. You take pride in your appearance.",
+  "You are quite fetching for a dwarf. You have regal features, good bearing, and a deep voice. You take pride in your appearance.",
 ];
 
-var humanBackground = [
-  "You died and returned to life. You start the game with 1d6 Insanity.",
-  "You were briefly possessed by a demon. You start the game with 1 Corruption.",
-  "You spent " + rollYears(6) + " as a prisoner in a dungeon.",
-  "You murdered someone in cold blood. You start the game with 1 Corruption.",
-  "You caught and recovered from a terrible disease.",
-  "You belonged to a strange cult and saw many strange things. You start the game with 1 Insanity.",
-  "The faerie held you prisoner for " + rollYears(20) + ".",
-  "You lost a loved one and their loss haunts you still.",
-  "You lost a finger, a few teeth, or an ear, or you gained a scar.",
+var dwarfBackground = [
+  "You sold your soul to a devil to gain wealth. The devil betrayed you and left you penniless. You start the game with 1 Corruption.",
+  "Your ancestors appeared to you in a vision and sent you to recover a fabled relic.",
+  "You accidentally killed someone close to you. ",
+  "You stole gold from a rival clan and the theft shames you.",
+  "You fought against the creatures you hate and lost.",
+  "You brought shame to yourself and your clan. You live as an exile, searching for redemption, even if that redemption comes with a glorious death.",
+  "You were taken prisoner by the creatures you hate. You lived as a slave for " +
+    (Math.ceil(Math.random() * 6) + Math.ceil(Math.random() * 6)) +
+    " years.",
+  "The creatures you hate overran your home and wiped out your clan.",
+  "You survived a cave-in and get a bit nervous when underground.",
   "You earned a living working in your profession.",
-  "You fell in love and the relationship ended well or is ongoing.",
-  "You have a spouse and " + Math.ceil(Math.random() * 4) + " children.",
+  "You are a sworn servant of the Dwarf King.",
+  "You are a gifted artisan.",
   "You traveled extensively. You speak one additional language.",
-  "You received an education. You know how to read the Common Tongue.",
-  "You saved your town from terrible monsters.",
-  "You foiled a plot to kill someone important or you brought a killer to justice.",
-  "You performed a great deed and are a hero to the people in your hometown.",
-  "You found an old treasure map.",
-  "Someone important and powerful owes you a favor.",
-  "You came into money and start the game with 2d6 ср.",
+  "You inherited a battleaxe or a warhammer from an ancestor.",
+  "You discovered a vein of gold under your mountain home.",
+  "You hunted down and helped kill a creature you hate.",
+  "You performed a great deed, and you are a hero to your clan.",
+  "You have a key to an ancient treasure vault lost to the dwarfs long ago.",
+  "You are the rightful heir to a stronghold overrun by the enemies of your people.",
+  "You came into money and start the game with 2d6 cp.",
 ];
 
-humanPersonality = [
-  "",
-  "",
-  "",
-  "You are cruel, wicked, and self-serving. You enjoy making others suffer.",
-  "You are erratic and unpredictable. You have a hard time keeping your word and tend toward capricious behavior.",
-  "Might makes right. Obedience to authority is the highest ideal.",
-  "Might makes right. Obedience to authority is the highest ideal.",
-  "You look after yourself first and foremost. You're not above double-crossing friends.",
-  "You look after yourself first and foremost. You're not above double-crossing friends.",
-  "You put your interests and those of your friends above all else.",
-  "You put your interests and those of your friends above all else.",
-  "You put your interests and those of your friends above all else.",
-  "You put your interests and those of your friends above all else.",
-  "You help others because it's the right thing to do.",
-  "You help others because it's the right thing to do.",
-  "You try to do what you think is right, even if it breaks laws and social conventions.",
-  "You try to do what you think is right, even if it breaks laws and social conventions.",
-  "Your honor and duty guide everything you do.",
-  "You are committed to good and noble causes, and you never stray from your beliefs even if your insistence would cost you your life.",
+var dwarfHatred = [
+  "ogres",
+  "troglodytes",
+  "beastmen",
+  "orcs",
+  "goblins",
+  "elves",
+  "trolls",
+  "giants",
+  "dragons",
+  "demons",
 ];
 
-var humanReligion = [
+var dwarfPersonality = [
   "",
   "",
   "",
-  "You belong to a cult dedicated to a dark power.",
-  "You belong to a heretical sect.",
-  "You were raised in the teachings of witchcraft.",
-  "You were raised in the teachings of witchcraft.",
-  "You follow the tenets of the Old Faith.",
-  "You follow the tenets of the Old Faith.",
-  "You follow the tenets of the Old Faith.",
-  "You follow the tenets of the Old Faith.",
-  "You belong to the Cult of the New God.",
-  "You belong to the Cult of the New God.",
-  "You belong to the Cult of the New God.",
-  "You belong to the Cult of the New God.",
-  "You belong to the Cult of the New God.",
-  "You have no religion.",
-  "You have no religion.",
-  "You have no religion.",
+  "Your hatred is a living thing. It drives you, gives you strength, and helps you triumph over your enemies.",
+  "You seek a glorious death killing your enemies.",
+  "You love gold more than anything. You love the way it feels, the sound it makes, and the taste of it.",
+  "You love gold more than anything. You love the way it feels, the sound it makes, and the taste of it.",
+  "You believe other people covet your wealth. It is your duty to protect what is yours-at any cost.",
+  "You believe other people covet your wealth. It is your duty to protect what is yours-at any cost.",
+  "Your honor is your life. You would never do anything to bring shame to your people.",
+  "Your honor is your life. You would never do anything to bring shame to your people.",
+  "Your honor is your life. You would never do anything to bring shame to your people.",
+  "Your honor is your life. You would never do anything to bring shame to your people.",
+  "You surrender to the will of your ancestors, the customs of your people, and the good of all.",
+  "You surrender to the will of your ancestors, the customs of your people, and the good of all.",
+  "You believe your people must rise above their greed and suspicion. In these dark times, you must band together to overcome the doom that awaits you all.",
+  "You believe your people must rise above their greed and suspicion. In these dark times, you must band together to overcome the doom that awaits you all.",
+  "You don't trust or like non-dwarfs, but they have their uses.",
+  "You have little use for the customs of your people. It's time to move past the dusty caves and seek out fortunes elsewhere.",
 ];
 
-function setHumanStats() {
+function setDwarfStats() {
   charStats = {
-    ancestry: "Human",
+    ancestry: "Dwarf",
     strength: 10,
-    agility: 10,
+    agility: 9,
     intellect: 10,
     will: 10,
-    perbonus: 0,
-    healthbonus: 0,
+    perbonus: 1,
+    healthbonus: 4,
     defbonus: 0,
     speedbonus: 0,
-    speed: 10,
-    charsize: 1,
+    speed: 8,
+    charsize: "1/2",
     corruption: 0,
     insanity: 0,
     cp: 0,
     ss: 0,
     gc: 0,
     bits: 0,
-    professions: 3,
+    professions: 2,
     prac: 0,
     prcr: 0,
     prma: 0,
@@ -333,49 +303,53 @@ function setHumanStats() {
     speak: 2,
     read: 1,
   };
+  languageList = dwarfLanguageStack;
+  detailString += setDwarfDetails();
+  nameString = getDwarfName();
+  abilityString = dwarfAbilityString;
 
   bumpStats();
   getSecondaryStats();
 }
 
-function getHumanName() {
-  return humanNames[Math.floor(Math.random() * humanNames.length)];
+function getDwarfName() {
+  return dwarfNames[Math.floor(Math.random() * dwarfNames.length)];
 }
 
-function setHumanDetails() {
-  var humanDetails = "<div>" + setHumanAge();
+function setDwarfDetails() {
+  var dwarfDetails = "<div>" + setDwarfAge();
   +"</div>";
-  humanDetails += "<div>" + setHumanBuild();
+  dwarfDetails += "<div>" + setDwarfBuild();
   +"</div>";
-  humanDetails += "<div>" + setHumanAppearance();
+  dwarfDetails += "<div>" + setDwarfAppearance();
   +"</div>";
-  humanDetails += "<div>" + setHumanBackground();
+  dwarfDetails += "<div>" + setDwarfBackground();
   +"</div>";
-  humanDetails += "<div>" + setHumanReligion();
-  +"</div>";
-  humanDetails += "<div>" + setHumanPersonality();
+  dwarfDetails += "<div>" + setDwarfHatred() + "</div>";
+
+  dwarfDetails += "<div>" + setDwarfPersonality();
   +"</div>";
 
-  return humanDetails;
+  return dwarfDetails;
 }
-function setHumanAge() {
-  return humanAge[rollxdx(3, 6)];
+function setDwarfAge() {
+  return dwarfAge[rollxdx(3, 6)];
 }
 
-function setHumanBuild() {
+function setDwarfBuild() {
   var buildroll = rollxdx(3, 6);
   if (buildroll < 6) {
     charStats.charsize = "1/2";
   }
 
-  return humanBuild[buildroll];
+  return dwarfBuild[buildroll];
 }
-function setHumanAppearance() {
-  return humanAppearance[rollxdx(3, 6)];
+function setDwarfAppearance() {
+  return dwarfAppearance[rollxdx(3, 6)];
 }
-function setHumanBackground() {
+function setDwarfBackground() {
   var backgroundValue =
-    humanBackground[Math.floor(Math.random() * humanBackground.length)];
+    dwarfBackground[Math.floor(Math.random() * dwarfBackground.length)];
   if (backgroundValue.match("You start the game with 1 Insanity.")) {
     charStats.insanity += 1;
   } else if (backgroundValue.match("You start the game with 1 Corruption.")) {
@@ -385,7 +359,7 @@ function setHumanBackground() {
     charStats.corruption += corrVal;
     backgroundValue = "You start the game with " + corrVal + " Corruption.";
   } else if (
-    backgroundValue == "You came into money and start the game with 2d6 ср."
+    backgroundValue == "You came into money and start the game with 2d6 cp."
   ) {
     var easyMoney = Math.ceil(Math.random() * 6) + Math.ceil(Math.random() * 6);
     charStats.cp += easyMoney;
@@ -407,13 +381,42 @@ function setHumanBackground() {
       " Insanity'";
   } else if (backgroundValue == "You found an old treasure map.") {
     specialGear += "An old treasure map.<br>";
+  } else if (backgroundValue.match("You are a gifted artisan")) {
+    charStats.prco += 1;
+  } else if (
+    backgroundValue ==
+    "You have a key to an ancient treasure vault lost to the dwarfs long ago."
+  ) {
+    specialGear +=
+      "A key to an ancient treasure vault lost to the dwarfs long ago.<br>";
+  } else if (
+    backgroundValue ==
+    "You inherited a battleaxe or a warhammer from an ancestor."
+  ) {
+    let myRoll = rollxdx(1, 2);
+    if (myRoll == 1) {
+      backgroundValue = "You inherited a battleaxe from an ancestor.";
+      specialGear += "An inherited battleaxe.<br>";
+    } else {
+      backgroundValue = "You inherited a warhammer from an ancestor.";
+      specialGear += "An inherited warhammer.<br>";
+    }
   }
 
   return backgroundValue;
 }
-function setHumanPersonality() {
-  return humanPersonality[rollxdx(3, 6)];
+function setDwarfPersonality() {
+  return dwarfPersonality[rollxdx(3, 6)];
 }
-function setHumanReligion() {
-  return humanReligion[rollxdx(3, 6)];
+function setDwarfReligion() {
+  return dwarfReligion[rollxdx(3, 6)];
+}
+
+function setDwarfHatred() {
+  let hatedFolk = dwarfHatred[Math.floor(Math.random() * dwarfHatred.length)];
+  dwarfAbilityString =
+    "<b>Darksight:</b> You can see in areas obscured by shadows or darkness within medium range as if those areas were lit. Beyond this distance, you treat darkness as shadows and shadows as lit.<br><b>Hated Creature:</b> Your hatred of " +
+    hatedFolk +
+    " grants 1 boon on attack rolls made against them.<br><b>Robust Constitution:</b> You take half damage from poison. You make challenge rolls with 1 boon to avoid or remove the poisoned affliction.";
+  return "You profoundly hate " + hatedFolk + ".";
 }

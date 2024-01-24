@@ -62,6 +62,18 @@
       type="module"
       defer
     ></script>
+    <script
+      type="text/javascript"
+      src="../scripts/dwarf.js"
+      type="module"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="../scripts/orc.js"
+      type="module"
+      defer
+    ></script>
   </head>
   <body>
     <header>
@@ -110,7 +122,20 @@
           >
             Changeling
           </button>
-
+          <button
+            class="generator"
+            id="dwarf"
+            onClick="generateCharacter(this.id)"
+          >
+            Dwarf
+          </button>
+          <button
+            class="generator"
+            id="orc"
+            onClick="generateCharacter(this.id)"
+          >
+            Orc
+          </button>
           <button
             class="generator"
             id="random"
@@ -124,6 +149,27 @@
         </ul>
       </aside>
       <article>
+        <div class="intro">
+          <h2>What's all this about?</h2>
+          <p>
+            This page will randomly generate a level zero character for Shadow
+            of the Demon Lord, using (mostly) the tables from the game of the
+            same name, though a number of editorial liberties have been taken
+            along the way. While this does use excerpts from the text of the RPG
+            (in the form of the character generation tables), the intent is to
+            do so within the bounds of fair use. If you're looking to get your
+            hands on the rules which would make this all make sense, I stronly
+            encourage you to go
+            <a
+              href="https://preview.drivethrurpg.com/en/product/155572/shadow-of-the-demon-lord"
+              >buy a copy.</a
+            >
+          </p>
+          <p>
+            Shadow of the Demon Lord is ©2015 Schwalb Entertainment, LLC. All
+            rights reserved.
+          </p>
+        </div>
         <div class="charsheet">
           <div class="lcol" id="lcol">
             <div class="charname"></div>

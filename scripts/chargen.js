@@ -1,51 +1,3 @@
-// document
-//   .querySelector("#generate-button")
-//   .addEventListener("click", function () {
-//     document.querySelector(".lcol").style.visibility = "visible";
-//     document.querySelector(".midcol").style.visibility = "visible";
-//     document.querySelector(".rcol").style.visibility = "visible";
-//     Ancestry = "Goblin";
-//     generateCharacter();
-//   });
-
-// document.querySelector("#new-button").addEventListener("click", function () {
-//   document.querySelector(".lcol").style.visibility = "visible";
-//   document.querySelector(".midcol").style.visibility = "visible";
-//   document.querySelector(".rcol").style.visibility = "visible";
-//   Ancestry = "Human";
-//   generateCharacter();
-// });
-
-// document
-//   .querySelector("#clockwork-button")
-//   .addEventListener("click", function () {
-//     document.querySelector(".lcol").style.visibility = "visible";
-//     document.querySelector(".midcol").style.visibility = "visible";
-//     document.querySelector(".rcol").style.visibility = "visible";
-//     Ancestry = "Clockwork";
-//     generateCharacter();
-//   });
-
-// document
-//   .querySelector("#changeling-button")
-//   .addEventListener("click", function () {
-//     document.querySelector(".lcol").style.visibility = "visible";
-//     document.querySelector(".midcol").style.visibility = "visible";
-//     document.querySelector(".rcol").style.visibility = "visible";
-//     Ancestry = "Changeling";
-//     generateCharacter();
-//   });
-
-// document.querySelector("#random-button").addEventListener("click", function () {
-//   document.querySelector(".lcol").style.visibility = "visible";
-//   document.querySelector(".midcol").style.visibility = "visible";
-//   document.querySelector(".rcol").style.visibility = "visible";
-//   var dieRoll = rollxdx(1, 3) - 1;
-
-//   Ancestry = ancestryList[dieRoll];
-//   generateCharacter();
-// });
-
 var nameString;
 var charStats;
 var languageList;
@@ -57,11 +9,20 @@ var abilityString = "";
 var gearString = "";
 
 function generateCharacter(ancestry) {
-  let ancestryList = ["goblin", "human", "clockwork", "changeling"];
+  let ancestryList = [
+    "goblin",
+    "human",
+    "clockwork",
+    "changeling",
+    "dwarf",
+    "orc",
+  ];
 
   document.querySelector(".lcol").style.visibility = "visible";
   document.querySelector(".midcol").style.visibility = "visible";
   document.querySelector(".rcol").style.visibility = "visible";
+  document.querySelector(".intro").style.visibility = "hidden";
+
   charStats = "";
   nameString = "";
   myLog(charStats, "generateCharacter - this should be empty", 1);
@@ -96,11 +57,11 @@ function generateCharacter(ancestry) {
     detailString += setClockworkDetails();
     nameString = getClockworkName();
   } else if (ancestry == "changeling") {
-    languageList = changelingLanguageStack;
-    abilityString = changelingAbilityString;
     setChangelingStats();
-    detailString += setChangelingDetails();
-    nameString = getChangelingName();
+  } else if (ancestry == "dwarf") {
+    setDwarfStats();
+  } else if (ancestry == "orc") {
+    setOrcStats();
   }
 
   professionString = setProfessions();
@@ -391,6 +352,7 @@ function clearPage() {
   document.querySelector(".lcol").style.visibility = "hidden";
   document.querySelector(".midcol").style.visibility = "hidden";
   document.querySelector(".rcol").style.visibility = "hidden";
+  document.querySelector(".intro").style.visibility = "visible";
 
   charStats = "";
   nameString = "";

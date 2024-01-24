@@ -131,7 +131,6 @@ aside ul li a {
 article {
   display: block;
   width: 80%;
-  min-height: 4rem;
   background-color: var(--reading-background);
   padding-left: 2rem;
   min-height: 40rem;
