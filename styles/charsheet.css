@@ -139,3 +139,52 @@ article {
   height: 36rem;
   width: calc(100% - 25rem);
 }
+
+@media (max-width: 767.98px) {
+  .intro {
+    position: absolute;
+    margin-top: 2rem;
+    height: 36rem;
+    width: 90%;
+    padding: 1ch;
+  }
+
+  aside {
+    visibility: visible;
+    position: relative;
+    width: 100%;
+  }
+  aside ul {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  main {
+    flex-direction: column;
+  }
+
+  .charsheet {
+    display: flex;
+    flex-direction: column;
+  }
+  /* 
+  .charsheet div:nth-child(1) {
+    order: 3;
+  }
+
+  .charsheet div:nth-child(2) {
+    order: 1;
+  }
+  .charsheet div:nth-child(3) {
+    order: 2;
+  } */
+
+  .gear {
+    width: 100%;
+    min-height: 0;
+  }
+
+  .statblock {
+    width: 100%;
+  }
+}
