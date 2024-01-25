@@ -124,6 +124,14 @@ aside ul li:hover {
   background-color: goldenrod;
 }
 
+aside ul li.active {
+  background-color: rgb(121, 93, 21);
+  color: var(--inverse-text);
+}
+aside ul li.active:hover {
+  background-color: rgb(121, 93, 21);
+}
+
 aside ul li a {
   text-decoration: none;
 }
@@ -145,4 +153,66 @@ footer {
   color: var(--inverse-text);
   text-align: center;
   padding: 1rem;
+}
+
+aside ul.sublist {
+  padding-left: 2rem;
+}
+aside ul.sublist li,
+aside ul.sublist li a {
+  display: block;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0.5rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  width: 100%;
+  text-align: left;
+  background: none;
+  background-color: none;
+  list-style-type: none;
+  color: var(--inverse-text);
+}
+
+aside ul.sublist li:hover {
+  background-color: goldenrod;
+}
+
+a {
+  color: var(--inverse-background);
+}
+
+.callout-card {
+  display: block;
+  width: 90%;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: var(--color3);
+  border-radius: 2rem;
+  box-shadow: 8px 4px 4px rgba(0, 0, 0, 30%);
+}
+
+.faketable {
+  display: grid;
+  grid-template-columns: 4rem auto;
+  padding-left: 2rem;
+}
+
+.faketable div:nth-child(odd) {
+  text-align: center;
+}
+
+.faketable div:nth-child(1),
+.faketable div:nth-child(2) {
+  background-color: var(--inverse-background);
+  color: var(--inverse-text);
+}
+
+.faketable div:nth-child(4n + 5),
+.faketable div:nth-child(4n + 6) {
+  background-color: var(--color-light);
+}
+
+article ol {
+  padding-left: 2rem;
 }

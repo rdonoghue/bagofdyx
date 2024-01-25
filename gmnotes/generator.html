@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+
+    <title>SotDL GM Notest</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Raleway:ital,wght@0,300;0,400;0,600;0,800;1,300;1,400;1,600;1,800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/site.css" />
+
+    <link rel="stylesheet" href="../styles/simple-sidebar.css" />
+
+    <script src="../scripts/script.js" type="module" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="title">GM Notes</div>
+      <div class="subtitle">Shadow of the Demon Lord: A Bag of Dyx</div>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../sessions/index.html"> Sessions</a></li>
+        <li><a href="index.html"> GM Notes</a></li>
+        <li><a href="../chargen/index.html">Character Creator</a></li>
+        <li><a href="../resources/index.html">Resources</a></li>
+      </ul>
+    </nav>
+    <main>
+      <aside>
+        <ul>
+          <li><a href="index.html">GM Notes Home</a></li>
+
+          <li><a href="sotdlnotes.html">Notes on the Game</a></li>
+          <li><a href="runningtales.html">Tales Adventure Path</a></li>
+          <li class="active">
+            <a href="generator.html">The Character Generator</a>
+          </li>
+        </ul>
+      </aside>
+      <article>
+        <h1>The Character Generator</h1>
+        <p>
+          So, while the <a href="../chargen/index.html">generator</a> is based
+          on the SotDL tables, there is absolutely a bit of editorializing to
+          it. I more or less tweaked the lists as I entered the data, and when
+          an option offered a choice, I tried to have a randomizer make it,
+          because it seemed silly not to. A number of the changes are consistent
+          enough to bear mention:
+        </p>
+        <ul>
+          <li>
+            If there's a random value in the entry ("You spent 1d6 years in
+            prison"), the number is rolled.
+          </li>
+          <li>
+            If the entry has an "or" (you were raise by a Witch or a Druid),
+            then it picks one. In appropriate cases - usually from the
+            interesting thing list - (You have a small magnet or a silver
+            mirror), the entry was split into two entries.
+          </li>
+          <li>
+            I think there was only one of these, but "GM Chooses" entries were
+            pulled out.
+          </li>
+          <li>
+            25% of the time, the character will lower one stat by one and raise
+            another by one at random.
+          </li>
+          <li>
+            Characters have a preferred "stack" of languages, and if they can
+            speak or read & write another language, they'll take the next one
+            from the list.
+          </li>
+          <li>
+            If an entry seems like it would give the character an item ("You
+            have a sword you took from a fallen warrior") then that item is
+            added to inventory. Spotting these entries is entirely manual, so I
+            may have missed some.
+          </li>
+        </ul>
+        <p>
+          The thread you may see through these design decisions is the removal
+          of choices. This is something I'm generally opposed to at the table,
+          but I feel it's in line with the purposes of a generator like this.
+          It's a script, not a cop, and if a player wants to take one of these
+          and alter it, they can absolutely do that. But the rest of the time,
+          the goal is to have something fully formed to look at, either to use
+          or as inspiration. Leaving dangling choices undercuts the value of
+          hitting the generate button multiple times and seeing what you get.
+          That's just opinion, of course, but all software is opinionated, and
+          it can be useful to know what those opinions are.
+        </p>
+        <h2>Current Version</h2>
+        <p>
+          I don't have numbered releases (yet) and should probably add them. At
+          this writing, I have a workable version (on desktop) which can
+          generate a character from any of the core 6 ancestries.
+        </p>
+        <h3>What's Next?</h3>
+        <ul>
+          <li>Get this working on mobile</li>
+          <li>Maybe add the comapnion Ancestries?</li>
+          <li>General layout cleanup. Try font and size options especially.</li>
+          <li>Languages are a bit kludgy. Make them a bit more dynamic.</li>
+          <li>
+            Turn the recurring Math.floor(Math.random() * array.length) bit into
+            a function. I genuinely have no idea why I didn't do that at the
+            outset.
+          </li>
+          <li>Add a note section to indicate stats have been bumped?</li>
+          <li>
+            Add version numbers and standardize release notes so I don't have to
+            paste this list in two places.
+          </li>
+        </ul>
+      </article>
+    </main>
+    <footer>Work in Progress</footer>
+  </body>
+</html>
