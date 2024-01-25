@@ -371,9 +371,6 @@ function setOrcAge() {
 
 function setOrcBuild() {
   var buildroll = rollxdx(3, 6);
-  if (buildroll < 6) {
-    charStats.charsize = "1/2";
-  }
 
   return orcBuild[buildroll];
 }
