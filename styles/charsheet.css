@@ -167,8 +167,7 @@ article {
     min-height: 1px;
     gap: 1px;
     /* margin: auto; */
-    border: 2px solid yellow;
-    background-color: pink;
+
     justify-content: center;
   }
 
@@ -204,6 +203,7 @@ article {
     font-size: 1rem;
     margin-bottom: 1px;
     padding: 5px 8px;
+    color: var(--reading-text);
   }
 
   main {
