@@ -277,7 +277,7 @@ function startingKit() {
   var kitString = "<div class='proftitle'>Gear</div><div>";
   var dieRoll = rollxdx(3, 6);
 
-  myLog("Wealth Roll: " + dieRoll, "startinKit()", 1);
+  myLog("Wealth Roll: " + dieRoll, "startingKit()", 1);
   if (dieRoll == 4 || dieRoll == 3) {
     charStats.bits += Math.ceil(Math.random() * 6);
     kitString += destituteGear();
@@ -310,41 +310,12 @@ function writeGear(kit) {
   document.querySelector(".gear").innerHTML = kit;
 }
 
-function interestingThing() {
-  return interestingThings[
-    Math.floor(Math.random() * interestingThings.length)
-  ];
-}
 function calculateBonus(stat = 10) {
   bonusVal = stat - 10;
   if (bonusVal > 0) {
     return "+" + bonusVal;
   } else {
     return bonusVal;
-  }
-}
-
-function rollxdx(dicenum = 1, dicesize = 6) {
-  var diceResult = 0;
-  var latestRoll = 0;
-  var diceAverage = 0;
-
-  for (let i = 0; i < dicenum; i++) {
-    latestRoll = Math.ceil(Math.random() * dicesize);
-
-    diceResult = diceResult + latestRoll;
-  }
-  diceAverage = Math.round((diceResult / dicenum) * 100) / 100;
-
-  return diceResult;
-}
-
-function rollYears(years = 6) {
-  var dieRoll = Math.ceil(Math.random() * years);
-  if (dieRoll === 1) {
-    return "1 year";
-  } else {
-    return dieRoll + " years";
   }
 }
 

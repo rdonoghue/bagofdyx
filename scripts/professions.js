@@ -1,3 +1,5 @@
+console.log("professions.js loaded");
+
 var academicProfessions = [
   "Student of Architecture",
   "Student of Astrology",
@@ -721,4 +723,8 @@ function professionAddReligious() {
     charStats.read += 1;
   }
   return profValue;
+}
+
+function interestingThing() {
+  return listPick(interestingThings);
 }

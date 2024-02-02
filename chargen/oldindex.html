@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+
+    <title>SotDL Character Generator</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Raleway:ital,wght@0,300;0,400;0,600;0,800;1,300;1,400;1,600;1,800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/site.css" />
+
+    <link rel="stylesheet" href="../styles/simple-sidebar.css" />
+    <link rel="stylesheet" href="../styles/charsheet.css" />
+
+    <script
+      type="text/javascript"
+      src="../scripts/script.js"
+      type="module"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="../scripts/chargen.js"
+      type="module"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="../scripts/professions.js"
+      type="module"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="../scripts/goblin.js"
+      type="module"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="../scripts/human.js"
+      type="module"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="../scripts/clockwork.js"
+      type="module"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="../scripts/changeling.js"
+      type="module"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="../scripts/dwarf.js"
+      type="module"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="../scripts/orc.js"
+      type="module"
+      defer
+    ></script>
+  </head>
+  <body>
+    <div class="hamburger-box""></div>
+
+    <header>
+      <div class="title">SotDL Generators</div>
+      <div class="subtitle">Shadow of the Demon Lord: A Bag of Dyx</div>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../sessions/index.html"> Sessions</a></li>
+        <li><a href="../index.html"> GM Notes</a></li>
+        <li><a href="index.html">Character Creator</a></li>
+        <li><a href="../resources/index.html">Resources</a></li>
+    </nav>
+    <main>
+      <aside>
+        <ul>
+          <button
+            class="generator"
+            id="changeling"
+            onClick="generateCharacter(this.id)"
+          >
+            Changeling
+          </button>
+          <button
+            class="generator"
+            id="clockwork"
+            onClick="generateCharacter(this.id)"
+          >
+            Clockwork
+          </button>
+
+          <button
+            class="generator"
+            id="dwarf"
+            onClick="generateCharacter(this.id)"
+          >
+            Dwarf
+          </button>
+          <button
+            class="generator"
+            id="goblin"
+            onClick="generateCharacter(this.id)"
+          >
+            Goblin
+          </button>
+
+          <button
+            class="generator"
+            id="human"
+            onClick="generateCharacter(this.id)"
+          >
+            Human
+          </button>
+          <button
+            class="generator"
+            id="orc"
+            onClick="generateCharacter(this.id)"
+          >
+            Orc
+          </button>
+          <button
+            class="generator"
+            id="random"
+            onClick="generateCharacter(this.id)"
+          >
+            Random
+          </button>
+          <button class="generator" id="clear" onClick="clearPage()">
+            Clear
+          </button>
+        </ul>
+      </aside>
+      <article>
+        <div class="intro">
+          <h2>What's all this about?</h2>
+          <p>
+            This page will randomly generate a level zero character for Shadow
+            of the Demon Lord, using (mostly) the tables from the game of the
+            same name, though a number of editorial liberties have been taken
+            along the way. While this does use excerpts from the text of the RPG
+            (in the form of the character generation tables), the intent is to
+            do so within the bounds of fair use. If you're looking to get your
+            hands on the rules which would make this all make sense, I strongly
+            encourage you to go
+            <a
+              href="https://preview.drivethrurpg.com/en/product/155572/shadow-of-the-demon-lord"
+              >buy a copy.</a
+            >
+          </p>
+          <p>
+            Shadow of the Demon Lord is ©2015 Schwalb Entertainment, LLC. All
+            rights reserved.
+          </p>
+          <p>
+            For more details on the generator, including some of the logic
+            behind it and the next things I'm working on, check out
+            <a href="../gmnotes/generator.html">my notes</a>.
+          </p>
+
+          <p>
+            <b>BE WARNED:</b> Mobile is still rolling out, so it's super janky.
+          </p>
+        </div>
+
+        <div class="charsheet">
+          <div class="lcol" id="lcol">
+            <div class="nameblock">
+            <div class="charname"></div>
+            <div class="ancestry"></div>
+          </div>
+            <div class="statblock">
+              <div>Stat</div>
+              <div>Value</div>
+              <div>Bonus</div>
+              <div>Strength</div>
+              <div id="str"></div>
+              <div id="strmod"></div>
+              <div>Agility</div>
+              <div id="agi"></div>
+              <div id="agimod"></div>
+              <div>Intellect</div>
+              <div id="int"></div>
+              <div id="intmod"></div>
+              <div>Will</div>
+              <div id="wil"></div>
+              <div id="wilmod"></div>
+              <div>Perception</div>
+              <div id="per"></div>
+              <div id="permod"></div>
+              <div>Health</div>
+              <div id="health"></div>
+              <div></div>
+              <div>Healing</div>
+              <div id="recovery"></div>
+              <div></div>
+              <div>Defense</div>
+              <div id="bdef"></div>
+              <div></div>
+              <div>Size</div>
+              <div id="size"></div>
+              <div></div>
+              <div>Speed</div>
+              <div id="speed"></div>
+              <div></div>
+              <div>Damage</div>
+              <div id="damage"></div>
+              <div></div>
+              <div>Insanity</div>
+              <div id="insanity"></div>
+              <div></div>
+              <div>Corruption</div>
+              <div id="corruption"></div>
+              <div></div>
+            </div>
+          </div>
+          <div class="midcol" id="midcol">
+            <div class="chardetails"></div>
+            <div class="charprofessions"></div>
+            <div class="charabilities"></div>
+          </div>
+
+          <div class="rcol">
+            <div class="gear"></div>
+            <div class="money">
+              <div>Bits</div>
+              <div>CP</div>
+              <div>SS</div>
+              <div>GC</div>
+              <div class="bits">0</div>
+              <div class="cp">0</div>
+              <div class="ss">0</div>
+              <div class="gc">0</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+    <footer>Work In Progress</footer>
+  </body>
+</html>
