@@ -1,9 +1,11 @@
-console.log("smallgen.js loaded");
+myLog("smallgen.js loaded", "initializing", 0);
 
 var intThingButton = document.getElementById("intThing");
 var intResult = document.getElementById("intResult");
 var wealthThingButton = document.getElementById("wealthThing");
 var wealthResult = document.getElementById("wealthResult");
+var profThingButton = document.getElementById("profThing");
+var profResult = document.getElementById("profResult");
 
 intThingButton.addEventListener("click", function () {
   justInterestingThing();
@@ -13,12 +15,20 @@ wealthThingButton.addEventListener("click", function () {
   generateWealth();
 });
 
+profThingButton.addEventListener("click", function () {
+  generateProfession();
+});
+
 function justInterestingThing() {
   intResult.innerHTML = interestingThing();
 }
 
 function generateWealth() {
   wealthResult.innerHTML = justWealth();
+}
+
+function generateProfession() {
+  profResult.innerHTML = getOneProfession();
 }
 
 function justWealth() {
@@ -139,4 +149,26 @@ function richWealth() {
     money +
     " You also have a personal servant, a guard, and three horses with saddles."
   );
+}
+
+function getOneProfession() {
+  var profString = "";
+  var myd6 = 0;
+
+  myd6 = rollxdx(1, 6);
+  if (myd6 === 1) {
+    profString += listPick(academicProfessions) + " (Academic)";
+  } else if (myd6 === 2) {
+    profString += listPick(commonProfessions) + " (Common)";
+  } else if (myd6 === 3) {
+    profString += listPick(criminalProfessions) + " (Criminal)";
+  } else if (myd6 === 4) {
+    profString += listPick(martialProfessions) + " (Martial)";
+  } else if (myd6 === 5) {
+    profString += listPick(religiousProfessions) + " (Religious)";
+  } else if (myd6 === 6) {
+    profString += listPick(wildernessProfessions) + " (Wilderness)";
+  }
+
+  return profString;
 }
