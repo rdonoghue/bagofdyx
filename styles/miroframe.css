@@ -139,12 +139,12 @@ article ol {
 }
 
 .quickResult {
-  width: 80%;
+  width: 90%;
   font-family: "Lora", serif;
   font-size: 1.5rem;
   line-height: 1.75rem;
   padding: 1rem;
-  margin: 0 10%;
+  margin: 0 5%;
 }
 
 hamburger-box {
