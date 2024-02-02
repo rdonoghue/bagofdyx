@@ -2,7 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--spacer);
-  width: 100%;
+  width: 40rem;
   background-color: var(--color-background);
 }
 
@@ -10,7 +10,7 @@ header {
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 4rem;
+  min-height: 1rem;
   background-color: var(--inverse-background);
   color: var(--inverse-text);
   text-align: center;
@@ -21,8 +21,8 @@ header .title {
   display: block;
   font-family: "Averia Libre", sans-serif;
   font-weight: bold;
-  font-size: 2rem;
-  padding: 0.5rem;
+  font-size: 1.25rem;
+  padding: 0.25rem;
 }
 
 main {
@@ -119,7 +119,7 @@ article ol {
   width: 6rem;
   /* padding: 0.25ch 1rem; */
   padding: 0.25ch 2rem;
-  margin: 1ch auto;
+  margin: 0.5ch auto;
 }
 
 .quickButton:active {
@@ -140,7 +140,7 @@ article ol {
 .quickResult {
   width: 100%;
   font-family: "Lora", serif;
-  font-size: 3rem;
-  line-height: 3.25rem;
+  font-size: 2rem;
+  line-height: 2.25rem;
   padding: 1rem;
 }
