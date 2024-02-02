@@ -1,41 +1,46 @@
 body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacer);
-  width: 100%;
-  background-color: var(--color-background);
-}
-
-header {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 1rem;
-  background-color: var(--inverse-background);
-  color: var(--inverse-text);
-  text-align: center;
-  padding-top: 0.5rem;
-}
-
-header .title {
-  display: block;
-  font-family: "Averia Libre", sans-serif;
-  font-weight: bold;
-  font-size: 1.25rem;
-  padding: 0.25rem;
-}
-
-main {
+  font-family: "Raleway", sans-serif;
+  font-weight: lighter;
+  color: var(--reading-text);
+  font-size: 1.15rem;
+  line-height: 1.75rem;
+  background: linear-gradient(
+    70deg,
+    var(--background-color),
+    var(--background-color-shift)
+  );
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+}
 
-  gap: 0.5rem;
-  margin: auto auto;
+i {
+  font-style: italic;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Amaranth", sans-serif;
+  font-weight: 400;
+}
+
+.title {
+  font-family: "Amaranth", sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+  padding-top: 0.25rem;
+  width: 14rem;
+  text-align: center;
 }
 
 article {
   display: block;
-  width: 100%;
+  /* width: 100%; */
   background-color: var(--reading-background);
   padding-left: 2rem;
   width: 100%;
@@ -88,8 +93,6 @@ article ol {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-
-  width: 100%;
 }
 
 .quickButton {
@@ -139,7 +142,7 @@ article ol {
 }
 
 .quickResult {
-  width: 90%;
+  /* width: 90%; */
   font-family: "Lora", serif;
   font-size: 1.5rem;
   line-height: 1.75rem;
@@ -149,4 +152,30 @@ article ol {
 
 hamburger-box {
   visibility: hidden;
+}
+
+article {
+  background-color: antiquewhite;
+}
+
+@media (max-width: 1200px) {
+  article,
+  .quickResult {
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  article,
+  .quickResult {
+    font-size: 0.75rem;
+    line-height: 0.9rem;
+  }
+  .title {
+    font-size: 1rem;
+  }
 }
