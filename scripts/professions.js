@@ -1,4 +1,4 @@
-console.log("professions.js loaded");
+myLog("professions.js loaded", "initializing", 0);
 
 var academicProfessions = [
   "Student of Architecture",

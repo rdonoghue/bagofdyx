@@ -17,6 +17,7 @@ wealthThingButton.addEventListener("click", function () {
 
 profThingButton.addEventListener("click", function () {
   generateProfession();
+  myLog("Clicked Profession Button", "Event listener", 0);
 });
 
 function justInterestingThing() {

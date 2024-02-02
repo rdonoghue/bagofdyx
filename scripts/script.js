@@ -1,8 +1,8 @@
-console.log("script.js loaded");
+myLog("scripts.js loaded", "initializing", 0);
+var messagesOn = 0;
 
 var burger = document.querySelector(".hamburger-box");
 var overlayVisible = 0;
-var messagesOn = 0;
 
 burger.addEventListener("click", function () {
   navOverLay();
